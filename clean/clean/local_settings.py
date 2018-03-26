@@ -12,8 +12,8 @@ https://docs.djangoproject.com/en/1.11/ref/settings/
 """
 
 import os
-#import pymysql
-#pymysql.install_as_MySQLdb()
+import pymysql
+pymysql.install_as_MySQLdb()
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -82,21 +82,13 @@ WSGI_APPLICATION = 'clean.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': 'db',
-    }
-}
-
-'''
-DATABASES = {
-    'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'cleaneco_database',
         'USER': 'cleaneco_control',
         'PASSWORD': '8TWmZN5RiT+J',
     }
 }
-'''
+
 
 # Password validation
 # https://docs.djangoproject.com/en/1.11/ref/settings/#auth-password-validators
@@ -136,7 +128,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-#STATIC_ROOT = '/home/cleaneco/public_html/static/'
+STATIC_ROOT = '/home/cleaneco/public_html/static/'
 
 #Definição do usuário customizado
 AUTH_USER_MODEL = 'accounts.User'
