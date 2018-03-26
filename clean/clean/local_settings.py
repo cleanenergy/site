@@ -12,8 +12,6 @@ https://docs.djangoproject.com/en/1.11/ref/settings/
 """
 
 import os
-import pymysql
-pymysql.install_as_MySQLdb()
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -26,25 +24,13 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '^8fau^d&*8pex)%$c9&_=q+#s!mn7ekqaxpsx(xlie@xmndb6-'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = [
     '.clean.eco.br',
     'localhost',
 ]
 
-
-# Application definition
-
-INSTALLED_APPS = [
-    'django.contrib.admin',
-    'django.contrib.auth',
-    'django.contrib.contenttypes',
-    'django.contrib.sessions',
-    'django.contrib.messages',
-    'django.contrib.staticfiles',
-    'accounts'
-]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -82,10 +68,8 @@ WSGI_APPLICATION = 'clean.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'cleaneco_database',
-        'USER': 'cleaneco_control',
-        'PASSWORD': '8TWmZN5RiT+J',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': 'db',
     }
 }
 
@@ -114,13 +98,13 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'pt-br'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'America/Sao_Paulo'
 
 USE_I18N = True
 
 USE_L10N = True
 
-USE_TZ = True
+USE_TZ = False
 
 
 # Static files (CSS, JavaScript, Images)
@@ -128,7 +112,6 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-STATIC_ROOT = '/home/cleaneco/public_html/static/'
 
 #Definição do usuário customizado
 AUTH_USER_MODEL = 'accounts.User'

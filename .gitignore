@@ -1,6 +1,6 @@
 db
-clean/local_settings.py
 *.pyc
 __pycache__
 .DS_Store
-migrate
+migrations
+clean/clean/local_settings.py

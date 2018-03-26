@@ -13,6 +13,21 @@ https://docs.djangoproject.com/en/1.11/ref/settings/
 
 import os
 
+# Application definition
+
+INSTALLED_APPS = [
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+    'accounts',
+    'clientes',
+    'medicao',
+]
+
+
 try:
   from local_settings import *
 except ImportError:
