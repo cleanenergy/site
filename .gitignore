@@ -3,4 +3,9 @@ db
 __pycache__
 .DS_Store
 migrations
+<<<<<<< HEAD
 clean/clean/local_settings.py
+=======
+clean/clean/local_settings.py
+clean/.DS_Store
+>>>>>>> 3eb5c9589ba56e20d735f6adc86b366de4d60d54

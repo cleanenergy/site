@@ -1,12 +1,32 @@
+{% extends "clean/base.html" %}
 {% load static %}
-<!DOCTYPE html>
-<html>
-	<head>
-		<meta charset="UTF-8">
-		<title>Login Clean</title>>
-	</head>
-	<body>
-	</body>
+{% block title %}Login da Clean{% endblock %}
 
-</html>
-{% csrf_token %}
+{% block conteudo %}
+<div class="row justify-content-center">
+	<div class="col-sm-12">
+		<div class="row justify-content-center">
+				<img src="{% static 'clean/img/logo.png' %}" class="img-fluid">
+		</div>
+	</div>
+	<div class="col-sm-4 p-5 bg-light">
+		<form action="." method="post">
+		{% csrf_token %}
+		  	<div class="form-group">
+		    	<label for="loginInput">Login</label>
+		    	<input type="text" name="username" class="form-control" id="loginInput" aria-describedby="loginHelp" placeholder="Seu CPF ou CNPJ">
+		    	<small id="loginHelp" class="form-text text-muted">Não compartilhe seu login nem sua senha.</small>
+		  	</div>
+		  	<div class="form-group">
+		    	<label for="loginPassword">Senha</label>
+		    	<input type="password" name="password" required class="form-control" id="loginPassword" placeholder="Digite sua senha...">
+			</div>
+			<div class="row justify-content-center">
+				<input type="submit" class="btn btn-primary" value="Entrar" />
+			</div>
+		</form>
+	</div>
+</div>
+
+
+{% endblock %}
