@@ -12,6 +12,8 @@ https://docs.djangoproject.com/en/1.11/ref/settings/
 """
 
 import os
+import pymysql
+pymysql.install_as_MySQLdb()
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -31,22 +33,6 @@ ALLOWED_HOSTS = [
     'localhost',
 ]
 
-
-<<<<<<< HEAD
-# Application definition
-
-INSTALLED_APPS = [
-    'django.contrib.admin',
-    'django.contrib.auth',
-    'django.contrib.contenttypes',
-    'django.contrib.sessions',
-    'django.contrib.messages',
-    'django.contrib.staticfiles',
-    'accounts',
-]
-
-=======
->>>>>>> fe4838245fcdec9cf1fd194bc1d4dd76263968e7
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -83,15 +69,10 @@ WSGI_APPLICATION = 'clean.wsgi.application'
 
 DATABASES = {
     'default': {
-<<<<<<< HEAD
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'cleaneco_banco',
         'USER': 'cleaneco_control',
         'PASSWORD': '8TWmZN5RiT+J',
-=======
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': 'db',
->>>>>>> fe4838245fcdec9cf1fd194bc1d4dd76263968e7
     }
 }
 
@@ -133,6 +114,7 @@ USE_TZ = False
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = '/home/cleaneco/public_html/static/'
 
 
 #Definição do usuário customizado
