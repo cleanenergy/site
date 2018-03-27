@@ -25,11 +25,7 @@ INSTALLED_APPS = [
     'accounts',
     'clientes',
     'medicao',
-<<<<<<< HEAD
-
-=======
     'clean',
->>>>>>> 3eb5c9589ba56e20d735f6adc86b366de4d60d54
 ]
 
 LOGIN_URL = '/login/'
