@@ -25,8 +25,11 @@ INSTALLED_APPS = [
     'accounts',
     'clientes',
     'medicao',
+    'clean',
 ]
 
+LOGIN_URL = '/login/'
+LOGIN_REDIRECT_URL = '/admin/'
 
 try:
   from local_settings import *

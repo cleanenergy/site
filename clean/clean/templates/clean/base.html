@@ -1,0 +1,38 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+	<head>
+		<link rel="stylesheet" href="{% static 'clean/css/bootstrap.min.css' %}">
+		<link rel="stylesheet" href="{% static 'clean/css/clean.css' %}">
+		<link rel="shortcut icon" href="{% static 'clean/img/loading.gif' %}">
+		<meta charset="UTC-8">
+		<meta name="description" content="Energia solar">
+		<meta name="keywords" content="Energia, solar, energia solar, assinatura, belo horizonte">
+		<meta name="author" content="Emilio Palote Santos">
+		<meta name="author" content="Renato Pereira Nominato">
+		<meta name="author" content="Rodrigo Gherard Machado">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+		<title>{% block title %}Clean Energy Solutions{% endblock %}</title>
+	</head>
+	<body>
+		<div class="container">
+			{% block conteudo %}
+			<div class="row justify-content-center">
+				<img src="{% static 'clean/img/logo.png' %}" style="height:30vw;">
+			</div>
+			<div class="row justify-content-center">
+				<img src="{% static 'clean/img/loading.gif' %}" style="height:10vw;">
+			</div>
+			<div class="row row justify-content-center">
+				<h1>Estamos nascendo</h1>
+			</div>
+			{% endblock %}
+		</div>
+		{% block JS %}
+		<script src="{% static 'clean/js/jquery-3.3.1.min.js' %}"></script>
+		<script src="{% static 'clean/js/popper.min.js' %}"></script>
+		<script src="{% static 'clean/js/bootstrap.min.js' %}"></script>
+		{% endblock %}
+	</body>
+</html>

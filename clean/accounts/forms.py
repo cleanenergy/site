@@ -79,3 +79,6 @@ class UserAdmin(BaseUserAdmin):
 	search_fields = ('nome','sobrenome',)
 	ordering = ('nome','sobrenome',)
 	filter_horizontal = ()
+
+#class LoginForm(form.ModelForm):
+#	login = 
