@@ -4,11 +4,6 @@
 
 {% block conteudo %}
 <div class="row justify-content-center">
-	<div class="col-sm-12">
-		<div class="row justify-content-center">
-				<img src="{% static 'clean/img/logo.png' %}" class="img-fluid">
-		</div>
-	</div>
 	<div class="col-sm-4 p-5 bg-light">
 		<form action="." method="post">
 		{% csrf_token %}
@@ -25,6 +20,11 @@
 				<input type="submit" class="btn btn-primary" value="Entrar" />
 			</div>
 		</form>
+	</div>
+	<div class="col-sm-12">
+		<div class="row justify-content-center">
+				<img src="{% static 'clean/img/logo.png' %}" class="img-fluid">
+		</div>
 	</div>
 </div>
 
