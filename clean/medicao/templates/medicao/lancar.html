@@ -9,13 +9,17 @@
 				<img src="{% static 'clean/img/logo.png' %}" class="img-fluid">
 		</div>
 	</div>
-	<div class="col-sm-6 p-5 bg-light">
+	<div class="col-sm-6 p-5 bg-light ">
 		<form action="." method="post">
 			<h2>Lançador de Medição</h2>
 		{% csrf_token %}
 			{% for field in form %}
+			{% if field.errors %}
+			<div class="form-group has-danger">
+			{% else %}
 			<div class="form-group">
-			  	{{ field.label_tag }}
+			{% endif %}
+			  	{{ field.label_tag }} 
 			  	{{ field }}
 			  	{% for error in field.errors %}
 			  	<small id = "labels" class="form-text text-danger">{{ error }}</small>
@@ -25,7 +29,9 @@
 			  	{% endif %}
 		  	</div>
 		  	{% endfor %}
-		  	<button type="submit" class="btn btn-primary">Gravar</button>
+		  	<div class="row justify-content-center">
+		  		<button type="submit" class="btn btn-primary">Gravar</button>
+		  	</div>
 		</form>
 	</div>
 </div>

@@ -21,7 +21,9 @@ class MedidaForm(forms.ModelForm):
 			'%m/%d/%y %H:%M:%S',    # '10/25/06 14:30:59'
 			'%m/%d/%y %H:%M',       # '10/25/06 14:30'
 			'%m/%d/%y'             # '10/25/06'
-			]
+			],
+		help_text="Data/Hora da medição",
+		label = "Data/Hora"
 		)
 
 	class Meta:
@@ -34,4 +36,10 @@ class MedidaForm(forms.ModelForm):
 			'medida': forms.NumberInput( attrs = {
 					'class': 'form-control',
 				})
+		}
+		labels = {
+			"ug": "Unidade Geradora"
+		}
+		help_texts={
+			"medida": "Valor da medida"
 		}
