@@ -1,0 +1,34 @@
+{% extends "clean/base.html" %}
+{% load static %}
+{% block title %}Login da Clean{% endblock %}
+
+{% block conteudo %}
+<div class="row justify-content-center">
+	<div class="col-sm-12">
+		<div class="row justify-content-center">
+				<img src="{% static 'clean/img/logo.png' %}" class="img-fluid">
+		</div>
+	</div>
+	<div class="col-sm-6 p-5 bg-light">
+		<form action="." method="post">
+			<h2>Lançador de Medição</h2>
+		{% csrf_token %}
+			{% for field in form %}
+			<div class="form-group">
+			  	{{ field.label_tag }}
+			  	{{ field }}
+			  	{% for error in field.errors %}
+			  	<small id = "labels" class="form-text text-danger">{{ error }}</small>
+			  	{% endfor %}
+			  	{% if field.help_text %}
+			  	<small id="labels" class="form-text text-muted">{{ field.help_text|safe }}</small>
+			  	{% endif %}
+		  	</div>
+		  	{% endfor %}
+		  	<button type="submit" class="btn btn-primary">Gravar</button>
+		</form>
+	</div>
+</div>
+
+
+{% endblock %}
