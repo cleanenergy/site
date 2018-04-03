@@ -12,7 +12,7 @@ def medicao_lancar(request):
 		form = MedidaForm(request.POST)
 		if form.is_valid():
 			nova_medida =  form.save()
-			html = "{ 'status': 'OK', 'save': [{'ug':'" +  nova_medida.ug.__str__() + "'}, {'':'" + nova_medida.data_hora.__str__() + "'}, {'medida':'" + nova_medida.medida.__str__() + "'}] }"
+			html = "{ 'status': 'OK', 'save': [{'ug':'" +  nova_medida.ug.id.__str__() + "'}, {'':'" + nova_medida.data_hora.__str__() + "'}, {'medida':'" + nova_medida.medida.__str__() + "'}] }"
 			return HttpResponse(html)
 	else:
 		form = MedidaForm()
