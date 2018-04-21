@@ -1,0 +1,57 @@
+{% extends "clean/base.html" %}
+{% load static %}
+{% block title %}Login da Clean{% endblock %}
+
+{% block navbar %}
+<nav class="navbar navbar-expand-lg sticky-top navbar-dark bg-azul-clean font-logo">
+	<button class="navbar-toggler mr-2" type="button" data-toggle="collapse" data-target=".multi-collapse" aria-controls="sideMenu navbarText" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  	</button>
+  <a href="/" class="navbar-brand mr-auto">
+  	<img src="{% static 'clean/img/logo.png' %}" class="img-fluid nav-logo">
+  </a>
+  <div class="ml-auto d-lg-none">
+  	<a class="navbar-text text-warning">
+      <i class="fas fa-user-circle fa-lg"></i> Fulano da Silva
+  	</a>
+  	<a href="/logout/" class="navbar-text ml-3 nav-link text-white">
+      	<i class="fas fa-sign-out-alt fa-lg" style="color:Tomato"></i> Sair
+  	</a>
+  </div>
+  <div class="collapse navbar-collapse multi-collapse" id="navbarText">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="#">Geração <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/clientes/financeiro">Faturas <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/clientes/financeiro">Informações <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item mr-auto ml-auto d-lg-none">
+        	<a class="nav-link text-warning" data-toggle="collapse" href="#sideMenu" role="button" aria-expanded="false" aria-controls="sideMenu">Menu</a>
+      </li>
+    </ul>
+    <div id="sideMenu" class="collapse d-lg-none">
+    	{% block sidemenu %}
+		{% endblock %}
+	</div>
+  </div>
+  <div class="ml-auto d-none d-lg-block">
+  	<a class="navbar-text text-warning">
+      <i class="fas fa-user-circle fa-lg"></i> Fulano da Silva
+  	</a>
+  	<a href="/logout/" class="navbar-text ml-3 nav-link text-white">
+      	<i class="fas fa-sign-out-alt fa-lg" style="color:Tomato"></i> Sair
+  	</a>
+  </div>
+</nav>
+
+{% endblock %}
+
+
+{% block conteudo %}
+  
+
+{% endblock %}

@@ -3,6 +3,7 @@
 <html lang="pt-br">
 	<head>
 		<link rel="stylesheet" href="{% static 'clean/css/bootstrap.min.css' %}">
+		<link rel="stylesheet" href="{% static 'clean/fonts/css/fontawesome-all.min.css' %}">
 		<link rel="stylesheet" href="{% static 'clean/css/clean.css' %}">
 		<link rel="shortcut icon" href="{% static 'clean/img/loading.gif' %}">
 		<meta charset="UTC-8">
@@ -16,7 +17,10 @@
 		<title>{% block title %}Clean Energy Solutions{% endblock %}</title>
 	</head>
 	<body>
-		<div class="container">
+		{% block navbar %}
+
+		{% endblock %}
+		<div class="container-fluid">
 			{% block conteudo %}
 			<div class="row justify-content-center">
 				<img src="{% static 'clean/img/logo.png' %}" style="height:30vw;">

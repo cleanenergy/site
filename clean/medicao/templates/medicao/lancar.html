@@ -11,6 +11,7 @@
 	</div>
 	<div class="col-sm-6 p-5 bg-light ">
 		<form action="." method="post">
+			{% csrf_token %}
 			<h2>Lançador de Medição</h2>
 			{% for field in form %}
 			{% if field.errors %}

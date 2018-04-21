@@ -10,7 +10,11 @@
 		</div>
 	</div>
 	<div class="col-sm-4 p-5 bg-light">
-		<form action="." method="post">
+		{% if next %}
+		<form action="?next={{next}}" method="post">
+		{% else %}
+		<form action="" method="post">
+		{% endif %}
 		{% csrf_token %}
 		  	<div class="form-group">
 		    	<label for="loginInput">Login</label>

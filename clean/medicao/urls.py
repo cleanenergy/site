@@ -17,5 +17,6 @@ from django.conf.urls import url
 from medicao import views
 
 urlpatterns = [
-	url(r'^lancar/', views.medicao_lancar, name="medicao_lancar"),
+	url(r'^lancar/$', views.medicao_lancar, name="medicao_lancar"),
+	url(r'^lancar/manual/$', views.medicao_lancar_manual, name="medicao_lancar_manual"),
 ]

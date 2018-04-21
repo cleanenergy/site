@@ -1,3 +1,17 @@
-.bg-azul{
-	background-color: #7794C1!important;
+.bg-azul-clean{
+	background-color: #376cd1!important;
+}
+.bg-azul-light{
+	background-color: #87a7e4!important;
+}
+.bg-logo-clean{
+	background-image: url("/static/clean/img/logo.png")!important;
+	background-color: #FFFFFF;
+
+}
+.font-logo{
+	font-family: "Comic Sans MS", "Comic Sans", cursive!important;
+}
+.nav-logo{
+	max-height: 40px!important;
 }

@@ -6,7 +6,7 @@ from medicao.models import Medida
 class MedidaForm(forms.ModelForm):
 
 	data_hora = forms.DateTimeField(
-		widget= forms.DateTimeInput( format="%Y-%m-%dT%H:%M%" ,attrs = {
+		widget= forms.DateTimeInput( format="%Y-%m-%dT%H:%M" ,attrs = {
 				'class': 'form-control',
 				'type': 'datetime-local',
 			}),
@@ -20,7 +20,7 @@ class MedidaForm(forms.ModelForm):
 			'%m/%d/%Y',             # '10/25/2006'
 			'%m/%d/%y %H:%M:%S',    # '10/25/06 14:30:59'
 			'%m/%d/%y %H:%M',       # '10/25/06 14:30'
-			'%m/%d/%y'             # '10/25/06'
+			'%m/%d/%y'              # '10/25/06'
 			],
 		help_text="Data/Hora da medição",
 		label = "Data/Hora"

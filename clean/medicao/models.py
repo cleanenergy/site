@@ -20,7 +20,7 @@ class Medida(models.Model):
 		help_text = "data e hora da medição",
 		verbose_name = "data e hora da medição",
 		)
-	medida = models.PositiveIntegerField(
+	medida = models.FloatField(
 		help_text = "valor da medição",
 		verbose_name = "valor da medição"
 		)
