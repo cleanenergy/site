@@ -17,5 +17,5 @@ from django.conf.urls import url, include
 from clientes import views
 
 urlpatterns = [
-	url(r'^home/$', views.cliente_home, name="cliente_home"),
+	url(r'^geracao/$', views.cliente_geracao, name="cliente_geracao"),
 ]

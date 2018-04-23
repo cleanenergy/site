@@ -1,3 +1,54 @@
+@font-face {
+     font-family: "Ubuntu";
+     src: local("Ubuntu"), local("Ubuntu Regular"), url("/static/clean/ubuntu/Ubuntu-Regular.tff");
+     font-style: normal
+     font-weight: normal
+}
+@font-face {
+     font-family: "Ubuntu";
+     src: local("Ubuntu"), url("/static/clean/ubuntu/Ubuntu-Bold.tff");
+     font-style: normal
+     font-weight: bold
+}
+@font-face {
+     font-family: "Ubuntu";
+     src: local("Ubuntu"), url("/static/clean/ubuntu/Ubuntu-Italic.tff");
+     font-style: italic
+     font-weight: normal
+}
+@font-face {
+     font-family: "Ubuntu";
+     src: local("Ubuntu"), url("/static/clean/ubuntu/Ubuntu-BoldItalic.ttf");
+     font-style: italic
+     font-weight: bold
+}
+
+@font-face {
+     font-family: "Open Sans";
+     src: local("Open Sans"), local("Open Sans Regular"), url("/static/clean/open_sans/OpenSans-Regular.ttf");
+     font-style: normal
+     font-weight: normal
+}
+@font-face {
+     font-family: "Open Sans";
+     src: local("Open Sans"), url("/static/clean/open_sans/OpenSans-Bold.ttf");
+     font-style: normal
+     font-weight: bold
+}
+@font-face {
+     font-family: "Open Sans";
+     src: local("Open Sans"), url("/static/clean/open_sans/OpenSans-Italic.ttf");
+     font-style: italic
+     font-weight: normal
+}
+@font-face {
+     font-family: "Open Sans";
+     src: local("Open Sans"), url("/static/clean/open_sans/OpenSans-BoldItalic.ttf");
+     font-style: italic
+     font-weight: bold
+}
+
+
 .bg-azul-clean{
 	background-color: #376cd1!important;
 }
@@ -7,11 +58,17 @@
 .bg-logo-clean{
 	background-image: url("/static/clean/img/logo.png")!important;
 	background-color: #FFFFFF;
-
 }
+.color-clean-azul{
+	color: #376cd1!important;
+}
+
 .font-logo{
-	font-family: "Comic Sans MS", "Comic Sans", cursive!important;
+	font-family: "Ubuntu", "Open Sans", sans-serif!important;
+}
+body{
+	font-family: "Ubuntu", "Open Sans", sans-serif!important;
 }
 .nav-logo{
-	max-height: 40px!important;
+	max-height: 50px!important;
 }
