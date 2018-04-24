@@ -78,6 +78,7 @@ body{
 .cardClean{
 	height: 200px;
 	color: white;
+     width: 400px;
 	text-decoration: none;
 }
 .cardClean:hover{

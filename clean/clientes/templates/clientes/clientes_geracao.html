@@ -68,7 +68,7 @@
 
 {% block conteudo %}
 <div class="row" style="position:fixed; top:0; left:0; width:100%; min-height: 100vh">
-	<div class="col-lg-3 bg-azul-clean d-none d-lg-block" style="padding-top:80px;">
+	<div class="col-lg-4 col-xl-3 bg-azul-clean d-none d-lg-block" style="padding-top:80px;">
 		<form action="." method="GET" id="form-g">
 			<div class="list-group ml-2 mt-3">
 				<div class="form-group">
@@ -113,9 +113,9 @@
 			</div>
 		</form>	
 	</div>
-	<div class="col-lg-9" style="padding-top:80px; overflow: auto; height: 100vh">
+	<div class="col-lg-8 col-xl-9" style="padding-top:80px; overflow: auto; height: 100vh">
 			<div class="row d-flex justify-content-around text-center text-white">
-				<div class="col-lg-3 col-md-5 p-2 cardClean mb-2">
+				<div class="p-2 cardClean mb-2 ml-4 mr-4">
 					<div class="row cardTitle bg-verde-clean d-flex align-items-center">
 						<div class="col-12 p-2">
 							Unidade Geradora
@@ -130,7 +130,7 @@
 						</div>
 					</div>
 				</div>
-				<div class="col-lg-3 col-md-5 p-2 cardClean mb-2">
+				<div class="p-2 cardClean mb-2 ml-4 mr-4">
 					<div class="row cardTitle bg-verde-clean d-flex align-items-center">
 						<div class="col-12 p-2">
 							Potência Instalada
@@ -147,7 +147,7 @@
 						</div>
 					</div>
 				</div>
-				<div class="col-lg-3 col-md-5 p-2 cardClean mb-2">
+				<div class="p-2 cardClean mb-2 ml-4 mr-4">
 					<div class="row cardTitle bg-verde-clean d-flex align-items-center">
 						<div class="col-12 p-2">
 							Energia Gerada
@@ -166,9 +166,8 @@
 				</div>
 			</div>
 			<div class="row mb-5">
-				
-				<div class="col-lg-12 mt-5">
-					<canvas id="myChart" style="height:60vh; width: 100%"></canvas>
+				<div class="col-12 mt-3">
+					<canvas id="myChart" style="position: relative; margin: auto; height: 600px; width: 100%"></canvas>
 				</div>
 			</div>
 	</div>
@@ -196,7 +195,8 @@
 					                ticks: {
 					                    beginAtZero:true
 					                }
-					            }]
+					            }],
+					        maintainAspectRatio: false,
 					        }
 					    }
 					});
