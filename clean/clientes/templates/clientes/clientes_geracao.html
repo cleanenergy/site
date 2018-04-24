@@ -19,39 +19,49 @@
 {% endblock %}
 
 {% block sidemenu %}
-		<div class="list-group">
-			<a class="list-group-item list-group-item-action text-center color-clean-azul"><i class="far fa-calendar mr-2"></i> Período</a>
-		  	<a class="list-group-item list-group-item-action bg-azul-clean text-white" data-toggle="collapse" href="#Menu1" role="button" aria-expanded="false" aria-controls="Menu1">Dias</a>
-		  	<div id="Menu1" class="collapse d-lg-none">
-		  		<div class="list-group bg-azul-light">
-		  			<a href="?data=1&ug={{ ug }}" class="list-group-item list-group-item-action">Hoje</a>
-		  			<a href="?data=7&ug={{ ug }}" class="list-group-item list-group-item-action">7 Dias</a>
-		  			<a href="?data=15&ug={{ ug }}" class="list-group-item list-group-item-action">15 Dias</a>
-		  		</div>
-		  	</div>
-		  	<a class="list-group-item list-group-item-action bg-azul-clean text-white" data-toggle="collapse" href="#Menu2" role="button" aria-expanded="false" aria-controls="Menu2">Meses</a>
-		  	<div id="Menu2" class="collapse d-lg-none">
-		  		<div class="list-group bg-azul-light">
-		  			<a href="?data=31&ug={{ ug }}" class="list-group-item list-group-item-action">1 Mês</a>
-		  			<a href="?data=93&ug={{ ug }}" class="list-group-item list-group-item-action">3 Meses</a>
-		  			<a href="?data=183&ug={{ ug }}" class="list-group-item list-group-item-action">6 Meses</a>
-		  		</div>
-		  	</div>
-		  	<a class="list-group-item list-group-item-action bg-azul-clean text-white" data-toggle="collapse" href="#Menu3" role="button" aria-expanded="false" aria-controls="Menu3">Anos</a>
-		  	<div id="Menu3" class="collapse d-lg-none">
-		  		<div class="list-group bg-azul-light">
-		  			<a href="?data=365&ug={{ ug }}" class="list-group-item list-group-item-action">1 Ano</a>
-		  			<a href="?data=1826&ug={{ ug }}" class="list-group-item list-group-item-action">5 Anos</a>
-		  			<a href="?data=3652&ug={{ ug }}" class="list-group-item list-group-item-action">10 Anos</a>
-		  		</div>
-		  	</div>
-		</div>
-		<div class="list-group mt-3">
-		  	<a class="list-group-item list-group-item-action text-center color-clean-azul"><i class="fas fa-industry mr-2"></i> Geradoras</a>
-		  	{% for u in ugs%}
-		  	<a href="?data={{ data }}&ug={{u.id}}" class="list-group-item list-group-item-action bg-azul-clean text-white">{{u.code}}</a>
-		  	{% endfor %}
-		</div>
+		<form action="." method="GET" id="form-g2">
+			<div class="list-group ml-2 mt-3">
+				<div class="form-group">
+					<a class="list-group-item list-group-item-action text-center color-clean-azul"><i class="far fa-calendar mr-2"></i> Data</a>
+					<div class="d-flex justify-content-center">
+						<div class="p-2">
+							<div id="datepicker-2" class="datepicker"></div>
+						</div>
+					</div>
+					<input id="input-datepicker-2" class="form-control d-none" name="date" type="text" value="{{date}}">
+				</div>
+			</div>
+			<div class="list-group ml-2 mt-3">
+		  		<a class="list-group-item list-group-item-action text-center color-clean-azul"><i class="fas fa-industry mr-2"></i> Geradora</a>
+		  		<div class="input-group mb-3">
+				  	<div class="input-group-prepend">
+				    	<label class="input-group-text" for="inputGroupSelect01">UG </label>
+				  	</div>
+				  	<select name="ug" class="custom-select" id="inputGroupSelect03">
+				  		{% for u in ugs %}
+				  		<option value="{{u.id}}">{{u.code}}</option>
+				  		{% endfor %}
+				  	</select>
+				</div>
+			</div>
+			<div class="list-group ml-2 mt-3">
+		  		<a class="list-group-item list-group-item-action text-center color-clean-azul"><i class="fas fa-stopwatch fa-2"></i> Período</a>
+		  		<div class="input-group mb-3">
+				  	<div class="input-group-prepend">
+				    	<label class="input-group-text" for="inputGroupSelect02">Dias </label>
+				  	</div>
+				  	<select name="periodo" class="custom-select" id="inputGroupSelect04">
+				  		<option value="1">1 dia</option>
+				  		<option value="7">7 dias</option>
+				  		<option value="15">15 dias</option>
+				  		<option value="30">30 dias</option>
+				  	</select>
+				  	<div class="input-group-append bg-white">
+    					<button type="submit" form="form-g2" class="btn btn-outline-primary" type="button">Mostrar</button>
+  					</div>
+				</div>
+			</div>
+		</form>	
 
 {% endblock %}
 
@@ -59,42 +69,67 @@
 {% block conteudo %}
 <div class="row" style="position:fixed; top:0; left:0; width:100%; min-height: 100vh">
 	<div class="col-lg-3 bg-azul-clean d-none d-lg-block" style="padding-top:80px;">
-		<div class="list-group ml-2 mt-3">
-			<a class="list-group-item list-group-item-action text-center color-clean-azul"><i class="far fa-calendar mr-2"></i> Período</a>
-		  	<a class="list-group-item list-group-item-action bg-azul-clean text-white" data-toggle="collapse" href="#Menu2-1" role="button" aria-expanded="false" aria-controls="Menu2-1">Dias</a>
-		  	<div id="Menu2-1" class="collapse">
-		  		<div class="list-group bg-azul-light">
-		  			<a href="?data=1&ug={{ ug }}" class="list-group-item list-group-item-action">Hoje</a>
-		  			<a href="?data=7&ug={{ ug }}" class="list-group-item list-group-item-action">7 Dias</a>
-		  			<a href="?data=15&ug={{ ug }}" class="list-group-item list-group-item-action">15 Dias</a>
-		  		</div>
-		  	</div>
-		  	<a class="list-group-item list-group-item-action bg-azul-clean text-white" data-toggle="collapse" href="#Menu2-2" role="button" aria-expanded="false" aria-controls="Menu2-2">Meses</a>
-		  	<div id="Menu2-2" class="collapse">
-		  		<div class="list-group bg-azul-light">
-		  			<a href="?data=31&ug={{ ug }}" class="list-group-item list-group-item-action">1 Mês</a>
-		  			<a href="?data=93&ug={{ ug }}" class="list-group-item list-group-item-action">3 Meses</a>
-		  			<a href="?data=183&ug={{ ug }}" class="list-group-item list-group-item-action">6 Meses</a>
-		  		</div>
-		  	</div>
-		  	<a class="list-group-item list-group-item-action bg-azul-clean text-white" data-toggle="collapse" href="#Menu2-3" role="button" aria-expanded="false" aria-controls="Menu2-3">Anos</a>
-		  	<div id="Menu2-3" class="collapse">
-		  		<div class="list-group bg-azul-light">
-		  			<a href="?data=365&ug={{ ug }}" class="list-group-item list-group-item-action">1 Ano</a>
-		  			<a href="?data=1826&ug={{ ug }}" class="list-group-item list-group-item-action">5 Anos</a>
-		  			<a href="?data=3652&ug={{ ug }}" class="list-group-item list-group-item-action">10 Anos</a>
-		  		</div>
-		  	</div>
-		</div>
-		<div class="list-group ml-2 mt-3">
-		  	<a class="list-group-item list-group-item-action text-center color-clean-azul"><i class="fas fa-industry mr-2"></i> Geradoras</a>
-		  	{% for u in ugs%}
-		  	<a href="?data={{ data }}&ug={{u.pk}}" class="list-group-item list-group-item-action bg-azul-clean text-white">{{u.code}}</a>
-		  	{% endfor %}
-		</div>
+		<form action="." method="GET" id="form-g">
+			<div class="list-group ml-2 mt-3">
+				<div class="form-group">
+					<a class="list-group-item list-group-item-action text-center color-clean-azul"><i class="far fa-calendar mr-2"></i> Data</a>
+					<div class="d-flex justify-content-center">
+						<div class="p-2">
+							<div id="datepicker-1" class="datepicker"></div>
+						</div>
+					</div>
+					<input id="input-datepicker-1" class="form-control d-none" name="date" type="text" value="{{date}}">
+				</div>
+			</div>
+			<div class="list-group ml-2 mt-3">
+		  		<a class="list-group-item list-group-item-action text-center color-clean-azul"><i class="fas fa-industry mr-2"></i> Geradora</a>
+		  		<div class="input-group mb-3">
+				  	<div class="input-group-prepend">
+				    	<label class="input-group-text" for="inputGroupSelect01">UG </label>
+				  	</div>
+				  	<select name="ug" class="custom-select" id="inputGroupSelect01">
+				  		{% for u in ugs %}
+				  		<option value="{{u.id}}">{{u.code}}</option>
+				  		{% endfor %}
+				  	</select>
+				</div>
+			</div>
+			<div class="list-group ml-2 mt-3">
+		  		<a class="list-group-item list-group-item-action text-center color-clean-azul"><i class="fas fa-stopwatch fa-2"></i> Período</a>
+		  		<div class="input-group mb-3">
+				  	<div class="input-group-prepend">
+				    	<label class="input-group-text" for="inputGroupSelect02">Dias </label>
+				  	</div>
+				  	<select name="periodo" class="custom-select" id="inputGroupSelect02">
+				  		<option value="1">1 dia</option>
+				  		<option value="7">7 dias</option>
+				  		<option value="15">15 dias</option>
+				  		<option value="30">30 dias</option>
+				  	</select>
+				  	<div class="input-group-append bg-white">
+    					<button type="submit" form="form-g" class="btn btn-outline-primary" type="button">Mostrar</button>
+  					</div>
+				</div>
+			</div>
+		</form>	
 	</div>
 	<div class="col-lg-9" style="padding-top:80px; overflow: auto; height: 100vh">
 			<div class="row d-flex justify-content-around text-center text-white">
+				<div class="col-lg-3 col-md-5 p-2 cardClean mb-2">
+					<div class="row cardTitle bg-verde-clean d-flex align-items-center">
+						<div class="col-12 p-2">
+							Unidade Geradora
+						</div>
+					</div>
+					<div class="row d-flex align-items-center cardBody bg-warning">
+						<div class="col-5 p-2">
+							<i class="fas fa-industry fa-3x"></i>
+						</div>
+						<div class="col-7 p-2">
+							{{ug.code}}
+						</div>
+					</div>
+				</div>
 				<div class="col-lg-3 col-md-5 p-2 cardClean mb-2">
 					<div class="row cardTitle bg-verde-clean d-flex align-items-center">
 						<div class="col-12 p-2">
@@ -106,7 +141,7 @@
 							<i class="fas fa-bolt fa-3x"></i>
 						</div>
 						<div class="col-7 p-2">
-							0,640
+							{{ potencia }}
 							<br>KWp
 							<br>
 						</div>
@@ -129,29 +164,20 @@
 						</div>
 					</div>
 				</div>
-				<div class="col-lg-3 col-md-5 p-2 cardClean mb-2">
-					<div class="row cardTitle bg-verde-clean d-flex align-items-center">
-						<div class="col-12 p-2">
-							Tempo Funcionando
-						</div>
-					</div>
-					<div class="row d-flex align-items-center cardBody bg-warning">
-						<div class="col-5 p-2">
-							<i class="fas fa-clock fa-3x"></i>
-						</div>
-						<div class="col-7 p-2">
-							36
-							<br>Horas
-							<br>
-						</div>
-					</div>
-				</div>
 			</div>
 			<div class="row">
 				
 				<div class="col-lg-12 mt-5">
 					<canvas id="myChart" style="height:60vh; width: 100%"></canvas>
-					<script>
+				</div>
+			</div>
+	</div>
+</div>
+
+{% endblock %}
+
+{% block JS %}
+				<script>
 					var ctx = document.getElementById("myChart");
 					var myChart = new Chart(ctx, {
 					    type: 'line',
@@ -174,10 +200,23 @@
 					        }
 					    }
 					});
-					</script>
-				</div>
-			</div>
-	</div>
-</div>
+				</script>
+				<script>
+  					$( function() {
+    					$( ".datepicker" ).datepicker({
+    						onSelect: function(date){
+    							input = "#input-" + $(this).attr("id");
+    							$(input).val(date)
+    						},
+    						dateFormat: "dd-mm-yy",
+    						dayNamesMin: [ "Dom", "Seg", "Ter", "Qua", "Qui", "Sex", "Sáb" ],
+    						monthNames: [ "Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro" ],
+    						maxDate: "+0d",
+    						monthNamesShort: [ "Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez" ],
+    						currentText: "Hoje",
+    						numberOfMonths: 1,
 
+    					});
+  					} );
+  				</script>
 {% endblock %}
