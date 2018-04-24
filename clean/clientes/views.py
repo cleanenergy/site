@@ -25,38 +25,38 @@ def cliente_geracao(request):
 
 		if data and idUg:
 			ug = Geradora.objects.filter(id=idUg)[:1][0]
-			data_inicio = datetime.today() - timedelta(days=float(data))
-			geracao = getGeracao(ug=ug, data_inicio=data_inicio)
+			#data_inicio = datetime.today() - timedelta(days=float(data))
+			#geracao = getGeracao(ug=ug, data_inicio=data_inicio)
 
-			labels = geracao["labels"]
-			dados = geracao["data"]
-			energia = geracao["energia"]
+			#labels = geracao["labels"]
+			#dados = geracao["data"]
+			#energia = geracao["energia"]
 
 			return render(request, "clientes/clientes_geracao.html", {
 				"data": data,
 				"ug": ug.pk,
 				"ugs": ugs,
-				"dados": dados,
-				"labels": labels,
-				"energia": energia
+				#"dados": dados,
+				#"labels": labels,
+				#"energia": energia
 				})
 		else:
 			data = 1
 			ug = ugs[0]
-			data_inicio = datetime.today() - timedelta(days=float(data))
-			geracao = getGeracao(ug=ug, data_inicio=data_inicio)
+			#data_inicio = datetime.today() - timedelta(days=float(data))
+			#geracao = getGeracao(ug=ug, data_inicio=data_inicio)
 
-			labels = geracao["labels"]
-			dados = geracao["data"]
-			energia = geracao["energia"]
+			#labels = geracao["labels"]
+			#dados = geracao["data"]
+			#energia = geracao["energia"]
 
 			return render(request, "clientes/clientes_geracao.html", {
 				"data": data,
 				"ug": ug.pk,
 				"ugs": ugs,
-				"dados": dados,
-				"labels": labels,
-				"energia": energia
+				#"dados": dados,
+				#"labels": labels,
+				#"energia": energia
 				})
 
 	return redirect('/admin/')
