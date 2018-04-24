@@ -23,6 +23,6 @@ def povoar(meses_antes=2, loops=10, delta_hora= 1, delta_dia=1, limite_random=0.
 		for i in range(0,10):
 			medido = Medida(ug=geradora, data_hora=data_hora, medida=medida_atual)
 			medido.save()
-			medida_atual = medida_atual + round(random.uniform(0,limite_random), 1)
+			medida_atual = medida_atual + round(random.uniform(0,limite_random), 2)
 			data_hora = data_hora + h
 		data_hora = datetime(data_hora.year, data_hora.month, data_hora.day, 8, 0) + d

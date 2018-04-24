@@ -53,6 +53,33 @@ class UserChangeForm(forms.ModelForm):
 			"password"
 			)
 
+class UserChangeFormCliente(forms.ModelForm):
+# Formulário para alteração de Usuário
+
+	class Meta:
+		model = User
+		fields = (
+			"nome",
+			"sobrenome",
+			"email",
+			)
+		widgets = {
+			"nome": forms.TextInput( attrs = {
+					"class": "form-control",
+				}),
+			"sobrenome": forms.TextInput( attrs = {
+					"class": "form-control",
+				}),
+			"email": forms.EmailInput( attrs = {
+					"class": "form-control",
+				}),
+		}
+		labels = {
+			"nome": "Nome",
+			"sobrenome": "Sobrenome",
+			"email": "Email",
+		}
+
 class UserAdmin(BaseUserAdmin):
 	# The forms to add and change user instances
 	form = UserChangeForm

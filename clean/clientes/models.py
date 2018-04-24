@@ -168,6 +168,12 @@ class Geradora(models.Model):
 		help_text = "CEP(XXXXX-XXX)",
 		verbose_name = "CEP",
 		)
+	potencia = models.FloatField(
+		help_text = "potência instalada",
+		verbose_name = "potência",
+		default = 0.640
+		)
+
 	class Meta:
 
 		verbose_name = "geradora"
@@ -176,3 +182,15 @@ class Geradora(models.Model):
 
 	def __str__(self):
 		return  "UG" + self.id.__str__() + self.cliente.id +   "( " + self.cliente.nome + " )"
+
+	def code(self):
+		return "UG" + self.id.__str__() + self.cliente.id
+
+	
+
+
+
+
+
+
+

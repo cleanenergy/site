@@ -29,7 +29,7 @@ INSTALLED_APPS = [
 ]
 
 LOGIN_URL = '/login/'
-LOGIN_REDIRECT_URL = '/clientes/home/'
+LOGIN_REDIRECT_URL = '/clientes/geracao/'
 AUTH_USER_MODEL = 'accounts.User'
  
 
