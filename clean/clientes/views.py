@@ -154,8 +154,8 @@ def getGeracao(ug, data_inicio, data_fim):
 	energia = 0
 	labels = list()
 	data = list()
-	if medidas:
-		anterior = medidas[0]
+	if medidas.exists():
+		anterior = medidas.first()
 		medidas = medidas.exclude(id = anterior.id)
 		for medida in medidas:
 			delta = medida.medida - anterior.medida
