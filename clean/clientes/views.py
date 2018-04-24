@@ -154,7 +154,7 @@ def getGeracao(ug, data_inicio, data_fim):
 	try: 
 		anterior = medidas[0]
 	except:
-		anterior = none
+		anterior = None
 	energia = 0
 	labels = list()
 	data = list()
