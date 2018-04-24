@@ -27,7 +27,7 @@ def cliente_geracao(request):
 		if data and idUg:
 			ug = Geradora.objects.filter(id=idUg)[:1][0]
 			data_inicio = datetime.now() - timedelta(days=float(data))
-			geracao = getGeracao(ug=ug)
+			geracao = getGeracao(ug=ug, data_inicio=data_inicio)
 
 			labels = geracao["labels"]
 			dados = geracao["data"]
@@ -45,7 +45,7 @@ def cliente_geracao(request):
 			data = 1
 			ug = ugs[0]
 			data_inicio = datetime.now() - timedelta(days=float(data))
-			geracao = getGeracao(ug=ug)
+			geracao = getGeracao(ug=ug, data_inicio=data_inicio)
 
 			labels = geracao["labels"]
 			dados = geracao["data"]
@@ -145,8 +145,8 @@ def cliente_informacoes_password(request):
 	return redirect('/admin/')
 
 
-def getGeracao(ug):
-	medidas = Medida.objects.all().order_by("data_hora")
+def getGeracao(ug, data_inicio):
+	medidas = Medida.objects.filter(ug=ug, data_hora__gt=data_inicio).order_by("data_hora")
 	energia = 0
 	labels = list()
 	data = list()
