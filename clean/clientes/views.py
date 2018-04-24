@@ -20,44 +20,48 @@ def cliente_geracao(request):
 		cliente = None
 
 	if cliente:
-		data = request.GET.get("data", None)
+		date = datetime.strptime(request.GET.get("date", datetime.now().strftime("%d-%m-%Y")), "%d-%m-%Y")
 		idUg = request.GET.get("ug", None)
+		periodo = int(request.GET.get("periodo", 1))
 		ugs = Geradora.objects.filter(cliente=cliente)
 
-		if data and idUg:
+		if idUg:
 			ug = Geradora.objects.filter(id=idUg)[:1][0]
-			data_inicio = datetime.now() - timedelta(days=float(data))
-			geracao = getGeracao(ug=ug, data_inicio=data_inicio)
+			potencia = ug.potencia
+			data_inicio = date - timedelta(days=periodo)
+			geracao = getGeracao(ug=ug, data_inicio=data_inicio, data_fim=date)
 
 			labels = geracao["labels"]
 			dados = geracao["data"]
 			energia = geracao["energia"]
 
 			return render(request, "clientes/clientes_geracao.html", {
-				"data": data,
-				"ug": ug.pk,
+				"date": date.strftime("%d-%m-%Y"),
+				"ug": ug,
 				"ugs": ugs,
 				"dados": dados,
 				"labels": labels,
-				"energia": energia
+				"energia": energia,
+				"potencia": potencia
 				})
 		else:
-			data = 1
-			ug = ugs[0]
-			data_inicio = datetime.now() - timedelta(days=float(data))
-			geracao = getGeracao(ug=ug, data_inicio=data_inicio)
+			ug = ugs.first()
+			potencia = ug.potencia
+			data_inicio = date - timedelta(days=periodo)
+			geracao = getGeracao(ug=ug, data_inicio=data_inicio, data_fim=date)
 
 			labels = geracao["labels"]
 			dados = geracao["data"]
 			energia = geracao["energia"]
 
 			return render(request, "clientes/clientes_geracao.html", {
-				"data": data,
-				"ug": ug.pk,
+				"date": date.strftime("%d-%m-%Y"),
+				"ug": ug,
 				"ugs": ugs,
 				"dados": dados,
 				"labels": labels,
-				"energia": energia
+				"energia": energia,
+				"potencia": potencia
 				})
 
 	return redirect('/admin/')
@@ -145,20 +149,20 @@ def cliente_informacoes_password(request):
 	return redirect('/admin/')
 
 
-def getGeracao(ug, data_inicio):
-	medidas = Medida.objects.filter(ug=ug, data_hora__gt=data_inicio).order_by("data_hora")
+def getGeracao(ug, data_inicio, data_fim):
+	medidas = Medida.objects.filter(ug=ug, data_hora__gt=data_inicio, data_hora__lt=data_fim).order_by("data_hora")
 	energia = 0
 	labels = list()
 	data = list()
 	anterior = medidas[0]
 	medidas = medidas.exclude(id = anterior.id)
-
-	for medida in medidas:
-		delta = medida.medida - anterior.medida
-		data.append(delta)
-		labels.append(anterior.data_hora.strftime("%d-%m-%Y %H:%M"))
-		energia = energia + delta
-		anterior = medida
+	if medidas:
+		for medida in medidas:
+			delta = medida.medida - anterior.medida
+			data.append(delta)
+			labels.append(anterior.data_hora.strftime("%d-%m-%Y %H:%M"))
+			energia = energia + delta
+			anterior = medida
 	return {
 		"energia": energia,
 		"data": data,

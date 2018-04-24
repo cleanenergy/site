@@ -4,6 +4,7 @@
 	<head>
 		<link rel="stylesheet" href="{% static 'clean/css/bootstrap.min.css' %}">
 		<link rel="stylesheet" href="{% static 'clean/fonts/css/fontawesome-all.min.css' %}">
+		<link rel="stylesheet" href="{% static 'clean/jquery-ui/jquery-ui.min.css' %}">
 		<link rel="stylesheet" href="{% static 'clean/css/clean.css' %}">
 		<link rel="shortcut icon" href="{% static 'clean/img/loading.gif' %}">
 		<meta charset="UTC-8">
@@ -13,14 +14,7 @@
 		<meta name="author" content="Renato Pereira Nominato">
 		<meta name="author" content="Rodrigo Gherard Machado">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		{% block JS %}
-		<script src="{% static 'clean/js/jquery-3.3.1.min.js' %}"></script>
-		<script src="{% static 'clean/js/popper.min.js' %}"></script>
-		<script src="{% static 'clean/js/moment.js' %}"></script>
-		<script src="{% static 'clean/js/bootstrap.min.js' %}"></script>
-		<script src="{% static 'clean/js/chart.min.js' %}"></script>
-		<script src="{% static 'clean/js/clean.js' %}"></script>
-		{% endblock %}
+		
 
 		<title>{% block title %}Clean Energy Solutions{% endblock %}</title>
 	</head>
@@ -41,5 +35,16 @@
 			</div>
 			{% endblock %}
 		</div>
+
+		<script src="{% static 'clean/js/jquery-3.3.1.min.js' %}"></script>
+		<script src="{% static 'clean/js/popper.min.js' %}"></script>
+		<script src="{% static 'clean/js/moment.js' %}"></script>
+		<script src="{% static 'clean/js/bootstrap.min.js' %}"></script>
+		<script src="{% static 'clean/js/chart.min.js' %}"></script>
+		<script src="{% static 'clean/jquery-ui/jquery-ui.min.js' %}"></script>
+		<script src="{% static 'clean/js/clean.js' %}"></script>
+		{% block JS %}
+		
+		{% endblock %}
 	</body>
 </html>
