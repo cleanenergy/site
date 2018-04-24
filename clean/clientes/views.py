@@ -5,11 +5,12 @@ from clientes.forms import ClienteEditForm
 from django.shortcuts import render, redirect
 from django.core.exceptions import ObjectDoesNotExist
 from medicao.models import Medida
-from datetime import datetime, timedelta
+from datetime import timedelta
 from accounts.forms import UserChangeFormCliente
 from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib.auth import update_session_auth_hash
 from django.contrib.auth.decorators import login_required
+from django.utils.timezone import datetime
 
 @login_required
 def cliente_geracao(request):
@@ -25,7 +26,7 @@ def cliente_geracao(request):
 
 		if data and idUg:
 			ug = Geradora.objects.filter(id=idUg)[:1][0]
-			data_inicio = datetime.today() - timedelta(days=float(data))
+			data_inicio = datetime.now() - timedelta(days=float(data))
 			geracao = getGeracao(ug=ug, data_inicio=data_inicio)
 
 			labels = geracao["labels"]
@@ -43,7 +44,7 @@ def cliente_geracao(request):
 		else:
 			data = 1
 			ug = ugs[0]
-			data_inicio = datetime.today() - timedelta(days=float(data))
+			data_inicio = datetime.now() - timedelta(days=float(data))
 			geracao = getGeracao(ug=ug, data_inicio=data_inicio)
 
 			labels = geracao["labels"]
