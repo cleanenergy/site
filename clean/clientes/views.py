@@ -150,11 +150,12 @@ def cliente_informacoes_password(request):
 
 
 def getGeracao(ug, data_inicio, data_fim):
-	medidas = Medida.objects.filter(ug=ug, data_hora__gt=data_inicio, data_hora__lt=data_fim).order_by("data_hora")
+	medidas = Medida.objects.filter(ug=ug, data_hora__gt=data_inicio, data_hora__lt=data_fim)
 	energia = 0
 	labels = list()
 	data = list()
 	if medidas.exists():
+		medidas.order_by("data_hora")
 		anterior = medidas.first()
 		medidas = medidas.exclude(id = anterior.id)
 		for medida in medidas:
