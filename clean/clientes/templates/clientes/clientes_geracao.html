@@ -2,39 +2,55 @@
 {% load static %}
 {% block title %}Informações de Geração{% endblock %}
 
+{% block navs %}
+      <li class="nav-item active">
+        <a class="nav-link" href="/clientes/geracao">Geração <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/clientes/faturas">Faturas <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/clientes/informacoes">Informações <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item mr-auto ml-auto d-lg-none">
+        	<a class="nav-link text-warning" data-toggle="collapse" href="#sideMenu" role="button" aria-expanded="false" aria-controls="sideMenu">Menu</a>
+      </li>
+    </ul>
+{% endblock %}
+
 {% block sidemenu %}
 		<div class="list-group">
-			<a class="list-group-item list-group-item-action text-center color-clean-azul">Período</a>
+			<a class="list-group-item list-group-item-action text-center color-clean-azul"><i class="far fa-calendar mr-2"></i> Período</a>
 		  	<a class="list-group-item list-group-item-action bg-azul-clean text-white" data-toggle="collapse" href="#Menu1" role="button" aria-expanded="false" aria-controls="Menu1">Dias</a>
 		  	<div id="Menu1" class="collapse d-lg-none">
 		  		<div class="list-group bg-azul-light">
-		  			<a href="?data=hoje" class="list-group-item list-group-item-action">Hoje</a>
-		  			<a href="?data=7d" class="list-group-item list-group-item-action">7 Dias</a>
-		  			<a href="?data=15d" class="list-group-item list-group-item-action">15 Dias</a>
+		  			<a href="?data=1&ug={{ ug }}" class="list-group-item list-group-item-action">Hoje</a>
+		  			<a href="?data=7&ug={{ ug }}" class="list-group-item list-group-item-action">7 Dias</a>
+		  			<a href="?data=15&ug={{ ug }}" class="list-group-item list-group-item-action">15 Dias</a>
 		  		</div>
 		  	</div>
 		  	<a class="list-group-item list-group-item-action bg-azul-clean text-white" data-toggle="collapse" href="#Menu2" role="button" aria-expanded="false" aria-controls="Menu2">Meses</a>
 		  	<div id="Menu2" class="collapse d-lg-none">
 		  		<div class="list-group bg-azul-light">
-		  			<a href="?data=1m" class="list-group-item list-group-item-action">1 Mês</a>
-		  			<a href="?data=3m" class="list-group-item list-group-item-action">3 Meses</a>
-		  			<a href="?data=6m" class="list-group-item list-group-item-action">6 Meses</a>
+		  			<a href="?data=31&ug={{ ug }}" class="list-group-item list-group-item-action">1 Mês</a>
+		  			<a href="?data=93&ug={{ ug }}" class="list-group-item list-group-item-action">3 Meses</a>
+		  			<a href="?data=183&ug={{ ug }}" class="list-group-item list-group-item-action">6 Meses</a>
 		  		</div>
 		  	</div>
 		  	<a class="list-group-item list-group-item-action bg-azul-clean text-white" data-toggle="collapse" href="#Menu3" role="button" aria-expanded="false" aria-controls="Menu3">Anos</a>
 		  	<div id="Menu3" class="collapse d-lg-none">
 		  		<div class="list-group bg-azul-light">
-		  			<a href="?data=1a" class="list-group-item list-group-item-action">1 Ano</a>
-		  			<a href="?data=5a" class="list-group-item list-group-item-action">5 Anos</a>
-		  			<a href="?data=10a" class="list-group-item list-group-item-action">10 Anos</a>
+		  			<a href="?data=365&ug={{ ug }}" class="list-group-item list-group-item-action">1 Ano</a>
+		  			<a href="?data=1826&ug={{ ug }}" class="list-group-item list-group-item-action">5 Anos</a>
+		  			<a href="?data=3652&ug={{ ug }}" class="list-group-item list-group-item-action">10 Anos</a>
 		  		</div>
 		  	</div>
 		</div>
 		<div class="list-group mt-3">
-		  	<a class="list-group-item list-group-item-action text-center color-clean-azul">Geradoras</a>
-		  	<a href="?ug=UG209493288633" class="list-group-item list-group-item-action bg-azul-clean text-white">UG209493288633</a>
-		  	<a href="?data=7d" class="list-group-item list-group-item-action bg-azul-clean text-white">UG309493288633</a>
-		  	<a href="?data=15d" class="list-group-item list-group-item-action bg-azul-clean text-white">UG409493288633</a>
+		  	<a class="list-group-item list-group-item-action text-center color-clean-azul"><i class="fas fa-industry mr-2"></i> Geradoras</a>
+		  	{% for u in ugs%}
+		  	<a href="?data={{ data }}&ug={{u.id}}" class="list-group-item list-group-item-action bg-azul-clean text-white">{{u.code}}</a>
+		  	{% endfor %}
 		</div>
 
 {% endblock %}
@@ -44,49 +60,121 @@
 <div class="row" style="position:fixed; top:0; left:0; width:100%; min-height: 100vh">
 	<div class="col-lg-3 bg-azul-clean d-none d-lg-block" style="padding-top:80px;">
 		<div class="list-group ml-2 mt-3">
-			<a class="list-group-item list-group-item-action text-center color-clean-azul">Período</a>
+			<a class="list-group-item list-group-item-action text-center color-clean-azul"><i class="far fa-calendar mr-2"></i> Período</a>
 		  	<a class="list-group-item list-group-item-action bg-azul-clean text-white" data-toggle="collapse" href="#Menu2-1" role="button" aria-expanded="false" aria-controls="Menu2-1">Dias</a>
 		  	<div id="Menu2-1" class="collapse">
 		  		<div class="list-group bg-azul-light">
-		  			<a href="?data=hoje" class="list-group-item list-group-item-action">Hoje</a>
-		  			<a href="?data=7d" class="list-group-item list-group-item-action">7 Dias</a>
-		  			<a href="?data=15d" class="list-group-item list-group-item-action">15 Dias</a>
+		  			<a href="?data=1&ug={{ ug }}" class="list-group-item list-group-item-action">Hoje</a>
+		  			<a href="?data=7&ug={{ ug }}" class="list-group-item list-group-item-action">7 Dias</a>
+		  			<a href="?data=15&ug={{ ug }}" class="list-group-item list-group-item-action">15 Dias</a>
 		  		</div>
 		  	</div>
 		  	<a class="list-group-item list-group-item-action bg-azul-clean text-white" data-toggle="collapse" href="#Menu2-2" role="button" aria-expanded="false" aria-controls="Menu2-2">Meses</a>
 		  	<div id="Menu2-2" class="collapse">
 		  		<div class="list-group bg-azul-light">
-		  			<a href="?data=1m" class="list-group-item list-group-item-action">1 Mês</a>
-		  			<a href="?data=3m" class="list-group-item list-group-item-action">3 Meses</a>
-		  			<a href="?data=6m" class="list-group-item list-group-item-action">6 Meses</a>
+		  			<a href="?data=31&ug={{ ug }}" class="list-group-item list-group-item-action">1 Mês</a>
+		  			<a href="?data=93&ug={{ ug }}" class="list-group-item list-group-item-action">3 Meses</a>
+		  			<a href="?data=183&ug={{ ug }}" class="list-group-item list-group-item-action">6 Meses</a>
 		  		</div>
 		  	</div>
 		  	<a class="list-group-item list-group-item-action bg-azul-clean text-white" data-toggle="collapse" href="#Menu2-3" role="button" aria-expanded="false" aria-controls="Menu2-3">Anos</a>
 		  	<div id="Menu2-3" class="collapse">
 		  		<div class="list-group bg-azul-light">
-		  			<a href="?data=1a" class="list-group-item list-group-item-action">1 Ano</a>
-		  			<a href="?data=5a" class="list-group-item list-group-item-action">5 Anos</a>
-		  			<a href="?data=10a" class="list-group-item list-group-item-action">10 Anos</a>
+		  			<a href="?data=365&ug={{ ug }}" class="list-group-item list-group-item-action">1 Ano</a>
+		  			<a href="?data=1826&ug={{ ug }}" class="list-group-item list-group-item-action">5 Anos</a>
+		  			<a href="?data=3652&ug={{ ug }}" class="list-group-item list-group-item-action">10 Anos</a>
 		  		</div>
 		  	</div>
 		</div>
 		<div class="list-group ml-2 mt-3">
-		  	<a class="list-group-item list-group-item-action text-center color-clean-azul">Geradoras</a>
-		  	<a href="?ug=UG209493288633" class="list-group-item list-group-item-action bg-azul-clean text-white">UG209493288633</a>
-		  	<a href="?data=7d" class="list-group-item list-group-item-action bg-azul-clean text-white">UG309493288633</a>
-		  	<a href="?data=15d" class="list-group-item list-group-item-action bg-azul-clean text-white">UG409493288633</a>
+		  	<a class="list-group-item list-group-item-action text-center color-clean-azul"><i class="fas fa-industry mr-2"></i> Geradoras</a>
+		  	{% for u in ugs%}
+		  	<a href="?data={{ data }}&ug={{u.pk}}" class="list-group-item list-group-item-action bg-azul-clean text-white">{{u.code}}</a>
+		  	{% endfor %}
 		</div>
 	</div>
-	<div class="col-lg-9" style="padding-top:80px">
+	<div class="col-lg-9" style="padding-top:80px; overflow: auto; height: 100vh">
+			<div class="row d-flex justify-content-around text-center text-white">
+				<div class="col-lg-3 col-md-5 p-2 cardClean mb-2">
+					<div class="row cardTitle bg-verde-clean d-flex align-items-center">
+						<div class="col-12 p-2">
+							Potência Instalada
+						</div>
+					</div>
+					<div class="row d-flex align-items-center cardBody bg-warning">
+						<div class="col-5 p-2">
+							<i class="fas fa-bolt fa-3x"></i>
+						</div>
+						<div class="col-7 p-2">
+							0,640
+							<br>KWp
+							<br>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-3 col-md-5 p-2 cardClean mb-2">
+					<div class="row cardTitle bg-verde-clean d-flex align-items-center">
+						<div class="col-12 p-2">
+							Energia Gerada
+						</div>
+					</div>
+					<div class="row d-flex align-items-center cardBody bg-warning">
+						<div class="col-5 p-2">
+							<i class="fas fa-sun fa-3x"></i>
+						</div>
+						<div class="col-7 p-2">
+							{{ energia }}
+							<br>KWh
+							<br>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-3 col-md-5 p-2 cardClean mb-2">
+					<div class="row cardTitle bg-verde-clean d-flex align-items-center">
+						<div class="col-12 p-2">
+							Tempo Funcionando
+						</div>
+					</div>
+					<div class="row d-flex align-items-center cardBody bg-warning">
+						<div class="col-5 p-2">
+							<i class="fas fa-clock fa-3x"></i>
+						</div>
+						<div class="col-7 p-2">
+							36
+							<br>Horas
+							<br>
+						</div>
+					</div>
+				</div>
+			</div>
 			<div class="row">
-				<div id="cardEnergia" class="col-md-4">
-
-				</div>
-				<div id="card" class="col-md-4">
-
-				</div>
-				<div class="col-md-4">
-
+				
+				<div class="col-lg-12 mt-5">
+					<canvas id="myChart" style="height:60vh; width: 100%"></canvas>
+					<script>
+					var ctx = document.getElementById("myChart");
+					var myChart = new Chart(ctx, {
+					    type: 'line',
+					    data: {
+					        labels:[ {% for label in labels %} "{{label}}", {% endfor %} ],
+					        datasets: [{
+					            label: 'Geracão de Energia [KW]',
+					            data: {{dados}},
+					            backgroundColor: '#70AD47',
+					            cubicInterpolationMode: 'monotone'
+					        }]
+					    },
+					    options: {
+					        scales: {
+					            yAxes: [{
+					                ticks: {
+					                    beginAtZero:true
+					                }
+					            }]
+					        }
+					    }
+					});
+					</script>
 				</div>
 			</div>
 	</div>

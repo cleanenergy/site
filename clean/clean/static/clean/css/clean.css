@@ -47,6 +47,9 @@
      font-style: italic
      font-weight: bold
 }
+.bg-verde-clean{
+	background-color: #70AD47!important;
+}
 
 
 .bg-azul-clean{
@@ -71,4 +74,22 @@ body{
 }
 .nav-logo{
 	max-height: 50px!important;
+}
+.cardClean{
+	height: 200px;
+	color: white;
+	text-decoration: none;
+}
+.cardClean:hover{
+	height: 200px;
+	color: white;
+	text-decoration: none;
+}
+.cardBody{
+	height: 70%;
+	font-size: 2em;
+}
+.cardTitle{
+	height: 30%;
+	font-size: 1.5em;
 }

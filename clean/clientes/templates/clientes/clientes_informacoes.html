@@ -1,0 +1,73 @@
+{% extends "clientes/clientes_base.html" %}
+{% load static %}
+{% block title %}Informações de Faturas{% endblock %}
+
+{% block navs %}
+      <li class="nav-item">
+        <a class="nav-link" href="/clientes/geracao">Geração <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/clientes/faturas">Faturas <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="/clientes/informacoes">Informações <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item mr-auto ml-auto d-lg-none">
+        	<a class="nav-link text-warning" data-toggle="collapse" href="#sideMenu" role="button" aria-expanded="false" aria-controls="sideMenu">Menu</a>
+      </li>
+    </ul>
+{% endblock %}
+
+{% block sidemenu %}
+		<div class="list-group ml-2 mt-3">
+		  	<a class="list-group-item list-group-item-action text-center color-clean-azul"><i class="fas fa-industry mr-2"></i>Dados</a>
+		  	<a href="/clientes/informacoes/pessoais/" class="list-group-item list-group-item-action bg-azul-clean text-white">Pessoais</a>
+		  	<a href="/clientes/informacoes/usuario/" class="list-group-item list-group-item-action bg-azul-clean text-white">Dados de Usuário</a>
+		  	<a href="/clientes/informacoes/password/" class="list-group-item list-group-item-action bg-azul-clean text-white">Mudar Senha</a>
+		</div>
+
+{% endblock %}
+
+
+{% block conteudo %}
+<div class="row" style="position:fixed; top:0; left:0; width:100%; height: 100vh;">
+	<div class="col-lg-3 bg-azul-clean d-none d-lg-block" style="padding-top:80px;">
+		<div class="list-group ml-2 mt-3">
+		  	<a class="list-group-item list-group-item-action text-center color-clean-azul"><i class="fas fa-industry mr-2"></i>Dados</a>
+		  	<a href="/clientes/informacoes/pessoais/" class="list-group-item list-group-item-action bg-azul-clean text-white">Pessoais</a>
+		  	<a href="/clientes/informacoes/usuario/" class="list-group-item list-group-item-action bg-azul-clean text-white">Dados de Usuário</a>
+		  	<a href="/clientes/informacoes/password/" class="list-group-item list-group-item-action bg-azul-clean text-white">Mudar Senha</a>
+		</div>
+	</div>
+	<div class="col-lg-9" style="padding-top:80px; overflow: auto">
+		<div class="row d-flex justify-content-around">
+			<div class="col-md-6">
+				<h2 class="text-center mt-4">{{ titulo }}</h2>
+				<form action="." method="post">
+	    			{% csrf_token %}
+	    			{% for field in form %}
+	    			{% if field.errors %}
+	    			<div class="form-group has-danger">
+	    			{% else %}
+					<div class="form-group">
+					{% endif %}
+						{{ field.label_tag }}
+						{{ field }}
+						{% for error in field.errors %}
+				  			<small id = "labels" class="form-text text-danger">{{ error }}</small>
+				  		{% endfor %}
+				  		{% if field.help_text %}
+				  			<small id="labels" class="form-text text-muted">{{ field.help_text|safe }}</small>
+				  		{% endif %}
+				  	</div>
+	    			{% endfor %}
+	    			<div class="row justify-content-center">
+			  			<button type="submit" class="btn btn-primary">Gravar</button>
+			  		</div>
+				</form>
+			</div>
+		</div>>	
+	</div>
+</div>
+
+{% endblock %}
