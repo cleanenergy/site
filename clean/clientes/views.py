@@ -150,7 +150,12 @@ def cliente_informacoes_password(request):
 
 
 def getGeracao(ug, data_inicio, data_fim):
-"""
+	return {
+		"energia": 0,
+		"data": [],
+		"labels": []
+	}
+	"""
 	medidas = Medida.objects.filter(ug=ug, data_hora__gt=data_inicio, data_hora__lt=data_fim)
 	try: 
 		anterior = medidas[0]
@@ -170,11 +175,6 @@ def getGeracao(ug, data_inicio, data_fim):
 			energia = energia + delta
 			anterior = medida
 """
-	return {
-		"energia": 0,
-		"data": [],
-		"labels": []
-	}
 
 
 
