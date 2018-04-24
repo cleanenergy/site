@@ -146,7 +146,7 @@ def cliente_informacoes_password(request):
 
 
 def getGeracao(ug):
-	medidas = Medida.objects.filter(ug=ug).order_by("data_hora")
+	medidas = Medida.objects.all().order_by("data_hora")
 	energia = 0
 	labels = list()
 	data = list()
