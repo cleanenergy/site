@@ -20,7 +20,8 @@ def cliente_geracao(request):
 		cliente = None
 
 	if cliente:
-		date = datetime.strptime(request.GET.get("date", datetime.now().strftime("%d-%m-%Y %H:%M")), "%d-%m-%Y %H:%M")
+		date = datetime.strptime(request.GET.get("date", datetime.now().strftime("%d-%m-%Y")), "%d-%m-%Y")
+		date = date + timedelta(days=1)
 		idUg = request.GET.get("ug", None)
 		periodo = int(request.GET.get("periodo", 2))
 		ugs = Geradora.objects.filter(cliente=cliente)
@@ -159,13 +160,16 @@ def getGeracao(ug, data_inicio, data_fim):
 		anterior = medidas.first()
 		medidas = medidas.exclude(id = anterior.id)
 		for medida in medidas:
-			delta = medida.medida - anterior.medida
-			data.append(delta)
+			deltaE = medida.medida - anterior.medida
+			deltaT = medida.data_hora - anterior.data_hora
+			deltaT = deltaT.total_seconds()/3600
+			pot = deltaE/deltaT/1000
+			data.append(pot)
 			labels.append(anterior.data_hora.strftime("%d-%m-%Y %H:%M"))
-			energia = energia + delta
+			energia = energia + deltaE
 			anterior = medida
 	return {
-		"energia": energia,
+		"energia": energia/1000,
 		"data": data,
 		"labels": labels
 	}
