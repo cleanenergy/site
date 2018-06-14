@@ -20,7 +20,7 @@ def cliente_geracao(request):
 		cliente = None
 
 	if cliente:
-		date = datetime.strptime(request.GET.get("date", datetime.now().strftime("%d-%m-%Y")), "%d-%m-%Y")
+		date = datetime.strptime(request.GET.get("date", datetime.now().strftime("%d-%m-%Y %H:%M")), "%d-%m-%Y %H:%M")
 		idUg = request.GET.get("ug", None)
 		periodo = int(request.GET.get("periodo", 2))
 		ugs = Geradora.objects.filter(cliente=cliente)
