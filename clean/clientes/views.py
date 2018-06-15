@@ -163,7 +163,10 @@ def getGeracao(ug, data_inicio, data_fim):
 			deltaE = medida.medida - anterior.medida
 			deltaT = medida.data_hora - anterior.data_hora
 			deltaT = deltaT.total_seconds()/3600
-			pot = deltaE/deltaT/1000
+			try:
+				pot = deltaE/deltaT/1000
+			except: 
+				pot = 0
 			data.append(pot)
 			labels.append(anterior.data_hora.strftime("%d-%m-%Y %H:%M"))
 			energia = energia + deltaE
