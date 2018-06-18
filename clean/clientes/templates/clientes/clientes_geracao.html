@@ -199,6 +199,15 @@
 					            xAxes: [{
 					            	type: 'time',
 					            	distribution: 'linear',
+					            	time: {
+					            		parser: 'DD-MM-YYYY hh:mm',
+					            		displayFormats: {
+					            			hour: 'HH',
+					            			minute: 'HH:mm',
+					            			second: 'HH:mm:ss'
+					            		}
+
+					            	}
 					            }],
 					        maintainAspectRatio: true,
 					        }
