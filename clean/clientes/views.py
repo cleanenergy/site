@@ -156,7 +156,7 @@ def getGeracao(ug, data_inicio, data_fim):
 	labels = list()
 	data = list()
 	if medidas.exists():
-		medidas.order_by("data_hora")
+		medidas = medidas.order_by('data_hora')
 		anterior = medidas.first()
 		medidas = medidas.exclude(id = anterior.id)
 		for medida in medidas:
