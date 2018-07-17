@@ -333,7 +333,7 @@ def getEnergia(cliente):
 
 		medidasDia = Medida.objects.filter(ug=ug, data_hora__gte=inicioDia, data_hora__lte=fimDia).order_by("data_hora")
 		print(medidasDia)
-		ultimas = Medida.objects.filter(ug=ug).order_by("-data_hora")[:2]
+		ultimas = Medida.objects.filter(ug=ug, data_hora__gte=inicioDia).order_by("-data_hora")[:2]
 		try:
 			deltaE = ultimas[0].medida - ultimas[1].medida
 			deltaT = ultimas[0].data_hora - ultimas[1].data_hora
