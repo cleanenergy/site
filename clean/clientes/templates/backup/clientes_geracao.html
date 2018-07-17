@@ -1,0 +1,235 @@
+{% extends "clientes/clientes_base.html" %}
+{% load static %}
+{% block title %}Informações de Geração{% endblock %}
+
+{% block navs %}
+      <li class="nav-item active">
+        <a class="nav-link" href="/clientes/geracao">Geração <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/clientes/faturas">Faturas <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/clientes/informacoes">Informações <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item mr-auto ml-auto d-lg-none">
+        	<a class="nav-link text-warning" data-toggle="collapse" href="#sideMenu" role="button" aria-expanded="false" aria-controls="sideMenu">Menu</a>
+      </li>
+    </ul>
+{% endblock %}
+
+{% block sidemenu %}
+		<form action="." method="GET" id="form-g2">
+			<div class="list-group ml-2 mt-3">
+				<div class="form-group">
+					<a class="list-group-item list-group-item-action text-center color-clean-azul"><i class="far fa-calendar mr-2"></i> Data</a>
+					<div class="d-flex justify-content-center">
+						<div class="p-2">
+							<div id="datepicker-2" class="datepicker"></div>
+						</div>
+					</div>
+					<input id="input-datepicker-2" class="form-control d-none" name="date" type="text" value="{{date}}">
+				</div>
+			</div>
+			<div class="list-group ml-2 mt-3">
+		  		<a class="list-group-item list-group-item-action text-center color-clean-azul"><i class="fas fa-industry mr-2"></i> Geradora</a>
+		  		<div class="input-group mb-3">
+				  	<div class="input-group-prepend">
+				    	<label class="input-group-text" for="inputGroupSelect01">UG </label>
+				  	</div>
+				  	<select name="ug" class="custom-select" id="inputGroupSelect03">
+				  		{% for u in ugs %}
+				  		<option value="{{u.id}}">{{u.code}}</option>
+				  		{% endfor %}
+				  	</select>
+				</div>
+			</div>
+			<div class="list-group ml-2 mt-3">
+		  		<a class="list-group-item list-group-item-action text-center color-clean-azul"><i class="fas fa-stopwatch fa-2"></i> Período</a>
+		  		<div class="input-group mb-3">
+				  	<div class="input-group-prepend">
+				    	<label class="input-group-text" for="inputGroupSelect02">Dias </label>
+				  	</div>
+				  	<select name="periodo" class="custom-select" id="inputGroupSelect04">
+				  		<option value="1">1 dia</option>
+				  		<option value="7">7 dias</option>
+				  		<option value="15">15 dias</option>
+				  		<option value="30">30 dias</option>
+				  	</select>
+				  	<div class="input-group-append bg-white">
+    					<button type="submit" form="form-g2" class="btn btn-outline-primary" type="button">Mostrar</button>
+  					</div>
+				</div>
+			</div>
+		</form>	
+
+{% endblock %}
+
+
+{% block conteudo %}
+<div class="row" style="position:fixed; top:0; left:0; width:100%; min-height: 100vh">
+	<div class="col-lg-4 col-xl-3 bg-azul-clean d-none d-lg-block" style="padding-top:80px;">
+		<form action="." method="GET" id="form-g">
+			<div class="list-group ml-2 mt-3">
+				<div class="form-group">
+					<a class="list-group-item list-group-item-action text-center color-clean-azul"><i class="far fa-calendar mr-2"></i> Data</a>
+					<div class="d-flex justify-content-center">
+						<div class="p-2">
+							<div id="datepicker-1" class="datepicker"></div>
+						</div>
+					</div>
+					<input id="input-datepicker-1" class="form-control d-none" name="date" type="text" value="{{date}}">
+				</div>
+			</div>
+			<div class="list-group ml-2 mt-3">
+		  		<a class="list-group-item list-group-item-action text-center color-clean-azul"><i class="fas fa-industry mr-2"></i> Geradora</a>
+		  		<div class="input-group mb-3">
+				  	<div class="input-group-prepend">
+				    	<label class="input-group-text" for="inputGroupSelect01">UG </label>
+				  	</div>
+				  	<select name="ug" class="custom-select" id="inputGroupSelect01">
+				  		{% for u in ugs %}
+				  		<option value="{{u.id}}">{{u.code}}</option>
+				  		{% endfor %}
+				  	</select>
+				</div>
+			</div>
+			<div class="list-group ml-2 mt-3">
+		  		<a class="list-group-item list-group-item-action text-center color-clean-azul"><i class="fas fa-stopwatch fa-2"></i> Período</a>
+		  		<div class="input-group mb-3">
+				  	<div class="input-group-prepend">
+				    	<label class="input-group-text" for="inputGroupSelect02">Dias </label>
+				  	</div>
+				  	<select name="periodo" class="custom-select" id="inputGroupSelect02">
+				  		<option value="1">1 dia</option>
+				  		<option value="7">7 dias</option>
+				  		<option value="15">15 dias</option>
+				  		<option value="30">30 dias</option>
+				  	</select>
+				  	<div class="input-group-append bg-white">
+    					<button type="submit" form="form-g" class="btn btn-outline-primary" type="button">Mostrar</button>
+  					</div>
+				</div>
+			</div>
+		</form>	
+	</div>
+	<div class="col-lg-8 col-xl-9" style="padding-top:80px; overflow: auto; height: 100vh">
+			<div class="row d-flex justify-content-around text-center text-white">
+				<div class="p-2 cardClean mb-2 ml-4 mr-4">
+					<div class="row cardTitle bg-verde-clean d-flex align-items-center">
+						<div class="col-12 p-2">
+							Unidade Geradora
+						</div>
+					</div>
+					<div class="row d-flex align-items-center cardBody bg-warning">
+						<div class="col-5 p-2">
+							<i class="fas fa-industry fa-3x"></i>
+						</div>
+						<div class="col-7 p-2">
+							{{ug.code}}
+						</div>
+					</div>
+				</div>
+				<div class="p-2 cardClean mb-2 ml-4 mr-4">
+					<div class="row cardTitle bg-verde-clean d-flex align-items-center">
+						<div class="col-12 p-2">
+							Potência Instalada
+						</div>
+					</div>
+					<div class="row d-flex align-items-center cardBody bg-warning">
+						<div class="col-5 p-2">
+							<i class="fas fa-bolt fa-3x"></i>
+						</div>
+						<div class="col-7 p-2">
+							{{ potencia }}
+							<br>KWp
+							<br>
+						</div>
+					</div>
+				</div>
+				<div class="p-2 cardClean mb-2 ml-4 mr-4">
+					<div class="row cardTitle bg-verde-clean d-flex align-items-center">
+						<div class="col-12 p-2">
+							Energia Gerada
+						</div>
+					</div>
+					<div class="row d-flex align-items-center cardBody bg-warning">
+						<div class="col-5 p-2">
+							<i class="fas fa-sun fa-3x"></i>
+						</div>
+						<div class="col-7 p-2">
+							{{ energia }}
+							<br>KWh
+							<br>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row mb-5">
+				<div style="position: relative; margin: auto; width: 100%">
+					<canvas id="myChart" height="120px"></canvas>
+				</div>
+			</div>
+	</div>
+</div>
+
+{% endblock %}
+
+{% block JS %}
+				<script>
+					var ctx = document.getElementById("myChart");
+					var myChart = new Chart(ctx, {
+					    type: 'line',
+					    data: {
+					        labels:[ {% for label in labels %} "{{label}}", {% endfor %} ],
+					        datasets: [{
+					            label: 'Geracão de Energia [KW]',
+					            data: {{dados}},
+					            backgroundColor: '#70AD47',
+					            cubicInterpolationMode: 'monotone'
+					        }]
+					    },
+					    options: {
+					        scales: {
+					            yAxes: [{
+					                ticks: {
+					                    beginAtZero:true
+					                }
+					            }],
+					            xAxes: [{
+					            	type: 'time',
+					            	distribution: 'linear',
+					            	time: {
+					            		parser: 'DD-MM-YYYY hh:mm',
+					            		displayFormats: {
+					            			hour: 'HH',
+					            			minute: 'HH:mm',
+					            			second: 'HH:mm:ss'
+					            		}
+
+					            	}
+					            }],
+					        maintainAspectRatio: true,
+					        }
+					    }
+					});
+				</script>
+				<script>
+  					$( function() {
+    					$( ".datepicker" ).datepicker({
+    						onSelect: function(date){
+    							input = "#input-" + $(this).attr("id");
+    							$(input).val(date)
+    						},
+    						dateFormat: "dd-mm-yy",
+    						dayNamesMin: [ "Dom", "Seg", "Ter", "Qua", "Qui", "Sex", "Sáb" ],
+    						monthNames: [ "Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro" ],
+    						maxDate: "+0d",
+    						monthNamesShort: [ "Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez" ],
+    						currentText: "Hoje",
+    						numberOfMonths: 1,
+
+    					});
+  					} );
+  				</script>
+{% endblock %}

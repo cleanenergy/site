@@ -47,50 +47,58 @@
      font-style: italic
      font-weight: bold
 }
-.bg-verde-clean{
-	background-color: #70AD47!important;
+
+body{
+	font-family: "Ubuntu", "Open Sans", sans-serif!important;
 }
 
+/* Cores de fundo da palheta da empresa */
 
 .bg-azul-clean{
 	background-color: #376cd1!important;
 }
-.bg-azul-light{
-	background-color: #87a7e4!important;
+
+.bg-amarelo-clean{
+	background-color: #ffc107!important;
 }
-.bg-logo-clean{
-	background-image: url("/static/clean/img/logo.png")!important;
-	background-color: #FFFFFF;
+
+.bg-verde-clean{
+	background-color: #70AD47!important;
 }
-.color-clean-azul{
+
+/* Cores de texto na platheta da empresa*/
+
+.text-azul-clean{
 	color: #376cd1!important;
 }
 
-.font-logo{
-	font-family: "Ubuntu", "Open Sans", sans-serif!important;
+.text-amarelo-clean{
+	color: #ffc107!important;
 }
-body{
-	font-family: "Ubuntu", "Open Sans", sans-serif!important;
+
+.text-verde-clean{
+	color: #70AD47!important;;
 }
-.nav-logo{
-	max-height: 50px!important;
+
+.text-marrom-clean{
+	color: #964b00!important;
 }
-.cardClean{
-	height: 200px;
-	color: white;
-     width: 400px;
-	text-decoration: none;
+
+/* Navs com azul da clean*/
+.nav-item .nav-link{
+	color: #376cd1;
 }
-.cardClean:hover{
-	height: 200px;
-	color: white;
-	text-decoration: none;
+.nav-item .nav-link .active{
+	color: #000000!important;
 }
-.cardBody{
-	height: 70%;
-	font-size: 2em;
+
+/* Ocupar todo tamanho vertical */
+
+.full-height{
+	min-height: calc(100vh - 80px);
 }
-.cardTitle{
-	height: 30%;
-	font-size: 1.5em;
+/* Cards de carousel de economia */
+.hg-150{
+
+	height: 100px;
 }

@@ -2,11 +2,8 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 	<head>
-		<link rel="stylesheet" href="{% static 'clean/css/bootstrap.min.css' %}">
-		<link rel="stylesheet" href="{% static 'clean/fonts/css/fontawesome-all.min.css' %}">
-		<link rel="stylesheet" href="{% static 'clean/jquery-ui/jquery-ui.min.css' %}">
-		<link rel="stylesheet" href="{% static 'clean/css/clean.css' %}">
-		<link rel="shortcut icon" href="{% static 'clean/img/loading.gif' %}">
+
+		<title>{% block title %}Clean Energy Solutions{% endblock %}</title>
 		<meta charset="UTC-8">
 		<meta name="description" content="Energia solar">
 		<meta name="keywords" content="Energia, solar, energia solar, assinatura, belo horizonte">
@@ -14,9 +11,28 @@
 		<meta name="author" content="Renato Pereira Nominato">
 		<meta name="author" content="Rodrigo Gherard Machado">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+		<link rel="stylesheet" href="{% static 'clean/css/bootstrap.min.css' %}">
+		<link rel="stylesheet" href="{% static 'clean/css/fontawesome-all.css' %}">
+		<link rel="stylesheet" href="{% static 'clean/css/jquery-ui.min.css' %}">
+		<link rel="stylesheet" href="{% static 'clean/css/clean.css' %}">
+		<link rel="shortcut icon" href="{% static 'clean/img/navlogo.png' %}">
 		
 
-		<title>{% block title %}Clean Energy Solutions{% endblock %}</title>
+		<script src="{% static 'clean/js/jquery.min.js' %}"></script>
+		<script src="{% static 'clean/js/popper.min.js' %}"></script>
+		<script src="{% static 'clean/js/moment.js' %}"></script>
+		<script src="{% static 'clean/js/bootstrap.min.js' %}"></script>
+		<script src="{% static 'clean/js/Chart.js' %}"></script>
+		<script src="{% static 'clean/js/jquery-ui.min.js' %}"></script>
+		<script src="{% static 'clean/js/clean.js' %}"></script>
+
+		{% block JS %}
+		{% endblock %}
+		
+		
+
+		
 	</head>
 	<body>
 		{% block navbar %}
@@ -36,14 +52,7 @@
 			{% endblock %}
 		</div>
 
-		<script src="{% static 'clean/js/jquery-3.3.1.min.js' %}"></script>
-		<script src="{% static 'clean/js/popper.min.js' %}"></script>
-		<script src="{% static 'clean/js/moment.js' %}"></script>
-		<script src="{% static 'clean/js/bootstrap.min.js' %}"></script>
-		<script src="{% static 'clean/js/chart.min.js' %}"></script>
-		<script src="{% static 'clean/jquery-ui/jquery-ui.min.js' %}"></script>
-		<script src="{% static 'clean/js/clean.js' %}"></script>
-		{% block JS %}
+		{% block scripts %}
 		
 		{% endblock %}
 	</body>
