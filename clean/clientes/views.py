@@ -27,7 +27,7 @@ def cliente_geracao(request):
 		consumoMaquinaLavar = 0.27		# kWh/ciclo		(Samsung WD136UVHJWDF)
 		consumoLampadaLed = 0.336		# kWh/dia		(Lâmpada 14w equivalente a 100W)
 		consumoCarroEletrico = 	0.15	# kWh/km		(Tesla Model S)
-		consumoChuveiro = 0.092 		# kWh/minuto	(Chuveiro 5.500W)
+		consumoChuveiro = 5.5 			# kWh/hora		(Chuveiro 5.500W)
 		tarifa = 0.83 					# R$/kWh		(Tarifa Cemig bandeira verde 7/2018)
 
 
