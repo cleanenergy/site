@@ -3,15 +3,23 @@
 {% block title %}Login da Clean{% endblock %}
 
 {% block conteudo %}
+<div class="row" style="background-image: url('{% static 'clean/img/solarpanel.jpg' %}'); background-repeat: no-repeat; background-size: 100vw 100vh; width: 100vw; height: 100vh">
+	<div class="col-md-4 d-flex shadow-lg bg-light" style="opacity:0.95;">
+		<div class="row align-self-center justify-content-center">
+			<div class="col-8">
+				<img src="{% static 'clean/img/logo.png' %}" class="img-fluid" alt="Logo Clean">
+			</div>
+			<div class="alert alert-info text-center" role="alert">
+				Você foi desconectado!
+			</div>
+			<div class="col-12 text-center">
+				<a class="btn btn-primary" href="/login/" role="button">Refazer login?</a>
+			</div>
+		</div>
+	</div>
+	
 
-			<div class="row justify-content-center">
-				<img src="{% static 'clean/img/logo.png' %}" style="height:30vw;">
-			</div>
-			<div class="row justify-content-center">
-				<img src="{% static 'clean/img/loading.gif' %}" style="height:10vw;">
-			</div>
-			<div class="row row justify-content-center">
-				<h1>Volte logo!</h1>
-			</div>
+</div>
+
 
 {% endblock %}

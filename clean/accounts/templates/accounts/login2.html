@@ -33,8 +33,9 @@
 				{% endif %}
 				{% for field in form.visible_fields %}
 					<div class="form-group">
-		    			<label for="{{field.id_for_label}}">{{field.label}}</label>
-		    			<input type="{{field.html_name}}" name="{{field.name}}" class="form-control {% if field.errors %}is-invalid{% endif %}" id="{{field.id_for_label}}" aria-describedby="{{field.name}}Help" placeholder="{{field.label}}" value="{% if field.value %}{% if field.html_name != 'password' %}{{field.value}}{% endif %}{% endif %}">
+		    			<label for="{{field.id_for_label}}">{{field.label_tag}}</label>
+		    			<input type="{{field.html_name}}" name="{{field.name}}" class="form-control {% if field.errors %}is-invalid{% endif %}" id="{{field.id_for_label}}" aria-describedby="{{field.name}}Help" placeholder="{{field.help_text}}" value="{% if field.html_name != 'password' %}{{ field.value }} {% endif %}">
+		    			<small id="{{field.name}}Help" class="form-text text-muted">{{field.help_text}}</small>
 		    			{% if field.errors %}
 		    			<div class="invalid-feedback">
         					{% for error in field.errors %}
@@ -42,7 +43,6 @@
         					{% endfor %}
       					</div>
       					{% endif %}
-		    			<small id="{{field.name}}Help" class="form-text text-muted">{{field.help_text}}</small>
 		  			</div>
 		  		{% endfor %}
 					<div class="row justify-content-center">
