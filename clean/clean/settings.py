@@ -25,6 +25,7 @@ INSTALLED_APPS = [
     'accounts',
     'clientes',
     'medicao',
+    'fatura',
     'clean',
 ]
 
