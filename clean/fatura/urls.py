@@ -17,8 +17,6 @@ from django.conf.urls import url, include
 from fatura import views
 
 urlpatterns = [
-	url(r'^pagar/$', views.fatura_pagar, name="fatura_pagar"),
-	url(r'^cancelar/$', views.fatura_cancelar, name="fatura_cancelar"),
-	url(r'^sucesso/$', views.fatura_sucesso, name="fatura_sucesso"),
-    url(r'^processar/$', views.fatura_processar, name="fatura_processar"),
+	url(r'^sucesso/ass(?P<assinaturaId>[0-9]+)/$', views.fatura_sucesso, name="fatura_sucesso"),
+    url(r'^pagar/ass(?P<assinaturaId>[0-9]+)/$', views.fatura_pagar, name="fatura_pagar"),
 ]

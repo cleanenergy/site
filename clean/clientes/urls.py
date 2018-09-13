@@ -18,7 +18,7 @@ from clientes import views
 
 urlpatterns = [
 	url(r'^geracao/$', views.cliente_geracao, name="cliente_geracao"),
-	url(r'^faturas/$', views.cliente_faturas, name="cliente_faturas"),
+	url(r'^financeiro/$', views.cliente_financeiro, name="cliente_financeiro"),
 	url(r'^informacoes/$', views.cliente_informacoes_pessoais, name="cliente_informacoes"),
     url(r'^informacoes/pessoais/$', views.cliente_informacoes_pessoais, name="cliente_informacoes_pessoais"),
     url(r'^informacoes/usuario/$', views.cliente_informacoes_usuario, name="cliente_informacoes_usuario"),

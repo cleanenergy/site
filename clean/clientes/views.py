@@ -11,6 +11,7 @@ from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib.auth import update_session_auth_hash
 from django.contrib.auth.decorators import login_required
 from django.utils.timezone import datetime
+from fatura.models import Assinatura, Mensalidade
 
 @login_required
 def cliente_geracao(request):
@@ -97,15 +98,16 @@ def cliente_geracao(request):
 	return redirect('/admin/')
 
 @login_required
-def cliente_faturas(request):
+def cliente_financeiro(request):
 	try:
 		cliente = Cliente.objects.get(user=request.user)
+
 	except ObjectDoesNotExist:
 		cliente = None
 	if cliente:
-		ugs = Geradora.objects.filter(cliente=cliente)
-		return render(request, "clientes/clientes_faturas.html", {
-			"ugs": ugs
+		assinaturas = Assinatura.objects.filter(cliente=cliente)
+		return render(request, "clientes/clientes_financeiro.html", {
+			"assinaturas": assinaturas
 			})
 	return redirect('/admin/')
 

@@ -2,6 +2,11 @@
 from __future__ import unicode_literals
 
 from django.contrib import admin
-from models import Assinatura
+from fatura.models import Assinatura, Mensalidade
+from fatura.forms import AssinaturaAdminForm
 
-admin.site.register(Assinatura)
+class AssinaturaAdmin(admin.ModelAdmin):
+	form = AssinaturaAdminForm
+
+admin.site.register(Assinatura, AssinaturaAdmin)
+admin.site.register(Mensalidade)
