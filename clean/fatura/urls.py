@@ -14,13 +14,9 @@ Including another URLconf
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
 from django.conf.urls import url, include
-from clientes import views
+from fatura import views
 
 urlpatterns = [
-	url(r'^geracao/$', views.cliente_geracao, name="cliente_geracao"),
-	url(r'^financeiro/$', views.cliente_financeiro, name="cliente_financeiro"),
-	url(r'^informacoes/$', views.cliente_informacoes_pessoais, name="cliente_informacoes"),
-    url(r'^informacoes/pessoais/$', views.cliente_informacoes_pessoais, name="cliente_informacoes_pessoais"),
-    url(r'^informacoes/usuario/$', views.cliente_informacoes_usuario, name="cliente_informacoes_usuario"),
-    url(r'^informacoes/password/$', views.cliente_informacoes_password, name="cliente_informacoes_password"),
+	url(r'^sucesso/ass(?P<assinaturaId>[0-9]+)/$', views.fatura_sucesso, name="fatura_sucesso"),
+    url(r'^pagar/ass(?P<assinaturaId>[0-9]+)/$', views.fatura_pagar, name="fatura_pagar"),
 ]

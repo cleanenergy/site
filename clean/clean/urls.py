@@ -24,6 +24,7 @@ urlpatterns = [
     url(r'^admin/login/$', auth_views.login, {'template_name': 'accounts/login.html'}, name="admin_login"),
     url(r'^logout/$', auth_views.logout, {'template_name': 'accounts/logout.html'}, name='logout'),
     url(r'^admin/logout/$', auth_views.logout, {'template_name': 'accounts/logout.html'}, name='admin_logout'),
+    url(r'^pagamentos/', include('fatura.urls')),
     url(r'^medicao/', include('medicao.urls')),
     url(r'^clientes/', include('clientes.urls')),
     url(r'^admin/', admin.site.urls),

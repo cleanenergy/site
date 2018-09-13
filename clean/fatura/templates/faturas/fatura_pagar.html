@@ -1,0 +1,51 @@
+{% extends "clean/base.html" %}
+{% load static %}
+{% load l10n %}
+{% block title %}Área do Cliente{% endblock %}
+
+{% block JS %}
+
+
+{% endblock %}
+
+{% block navbar %}
+<nav class="navbar navbar-dark top-fixed bg-azul-clean navbar-expand-lg">
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <span class="navbar-brand mb-0 h1 text-white">
+      <img src="{% static 'clean/img/navlogo.png' %}" height="40" alt="Clean Energy Solutions">
+    </span>
+
+  
+{% block navs %}
+  
+{% endblock %}
+  <div class="ml-auto">
+      <a class="navbar-text text-warning">
+          <span class="d-lg-none"><i class="fas fa-user-circle fa-lg"></i> {{user.nome}}</span>
+          <span class="d-none d-lg-block"><i class="fas fa-user-circle fa-lg"></i> {{user.nome}} {{user.sobrenome}}</span>
+      </a>
+      <a href="/logout/" class="navbar-text ml-3 nav-link text-white">
+          <i class="fas fa-sign-out-alt fa-lg" style="color:Tomato"></i> Sair
+      </a>
+    </div>
+</nav>
+
+{% endblock %}
+
+
+{% block conteudo %}
+<script>
+  //Mostramos a mensagem de redirecionamento
+  jQuery('<div class="sa_payPal_overlay" style="visibility:visible;position:fixed; width:100%; height:100%; filter:progid:DXImageTransform.Microsoft.Gradient(GradientType=1, StartColorStr=\'#88ffffff\', EndColorStr=\'#88ffffff\'); background: rgba(255,255,255,0.8); top:0; left:0; z-index: 999999;"><div style=" background: #FFF; background-image: linear-gradient(top, #FFFFFF 45%, #E9ECEF 80%);background-image: -o-linear-gradient(top, #FFFFFF 45%, #E9ECEF 80%);background-image: -moz-linear-gradient(top, #FFFFFF 45%, #E9ECEF 80%);background-image: -webkit-linear-gradient(top, #FFFFFF 45%, #E9ECEF 80%);background-image: -ms-linear-gradient(top, #FFFFFF 45%, #E9ECEF 80%);background-image: -webkit-gradient(linear, left top,left bottom,color-stop(0.45, #FFFFFF),color-stop(0.8, #E9ECEF));display: block;margin: auto;position: fixed; margin-left:-220px; left:45%;top: 40%;text-align: center;color: #2F6395;font-family: Arial;padding: 15px;font-size: 15px;font-weight: bold;width: 530px;-webkit-box-shadow: 3px 2px 13px rgba(50, 50, 49, 0.25);box-shadow: rgba(0, 0, 0, 0.2) 0px 0px 0px 5px;border: 1px solid #CFCFCF;border-radius: 6px;"><img style="display:block;margin:0 auto 10px" src="https://www.paypalobjects.com/en_US/i/icon/icon_animated_prog_dkgy_42wx42h.gif"><h2>Aguarde alguns segundos.</h2> <p style="font-size:13px; color: #003171; font-weight:400">Você está sendo redirecionado para um ambiente seguro do PayPal<br /> para finalizar seu pagamento.</p><div style="margin:30px auto 0;"><img src="https://www.paypal-brasil.com.br/logocenter/util/img/logo_paypal.png"/></div></div></div>').appendTo('body');
+  setTimeout(function() {
+    window.location.href = '{{next}}';
+}, 5000);
+</script>
+
+{% endblock %}
+
+{% block scripts %}
+    
+{% endblock %}

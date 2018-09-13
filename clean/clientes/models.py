@@ -181,10 +181,10 @@ class Geradora(models.Model):
 		order_with_respect_to = "cliente"
 
 	def __str__(self):
-		return  "UG" + self.id.__str__() + self.cliente.id +   "( " + self.cliente.nome + " )"
+		return  "UG " + self.id.__str__()  + " | ( Cliente: "+ self.cliente.id +" )"
 
 	def code(self):
-		return "UG" + self.id.__str__() + self.cliente.id
+		return "UG " + self.id.__str__()
 
 	
 
