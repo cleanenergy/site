@@ -1,8 +1,5 @@
 # -*- coding: utf-8 -*-
 
-<<<<<<< HEAD
-from django import forms
-=======
 from django import forms
 from fatura.models import Assinatura
 
@@ -30,4 +27,4 @@ class AssinaturaAdminForm(forms.ModelForm):
 		widgets = {
 			"secret_key": forms.TextInput(attrs={'readonly':'readonly', "style": "width:250px; color:red"}),
 		}
->>>>>>> c359329461fb3c40db454b2cc66cf5873bbbfceb
+
