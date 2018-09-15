@@ -1,0 +1,5 @@
+cd $HOME/Documents/GitHub/Clean/django/bin/
+source activate
+cd $HOME/Documents/GitHub/Clean/site/clean
+
+python manage.py runserver
