@@ -11,7 +11,6 @@ class Assinatura(models.Model):
 	id = models.AutoField(
 		primary_key = True,
 		)
-
 	secret_key = models.CharField(
 		default = "A chave secreta será gerada automaticamente",
 		max_length = 700,
@@ -30,7 +29,7 @@ class Assinatura(models.Model):
 		)
 	prazo = models.IntegerField(
 		blank = False,
-		help_text = "prazo de pagamento",
+		help_text = "prazo de pagamento em meses",
 		verbose_name = "prazo",
 		)
 	valorProjeto = models.DecimalField(
@@ -48,7 +47,6 @@ class Assinatura(models.Model):
 		decimal_places = 2
 		)
 	valorMensalidade = models.DecimalField(
-		blank = True,
 		default = 297.5,
 		help_text = "valor da mensalidade",
 		verbose_name = "mensalidade",
@@ -81,6 +79,10 @@ class Assinatura(models.Model):
 		help_text = "indica o numero de parcelas pagas pelo cliente",
 		verbose_name = "parcelas pagas"
 		)
+	inicio = models.DateField(
+		help_text = "data de inicio da assinatura",
+		verbose_name = "inicio da assinatura",
+		)
 	pagamentoCartao = models.BooleanField(
 		default = True,
 		help_text = "indica a opção de pagamento do cliente",
@@ -101,8 +103,8 @@ class Assinatura(models.Model):
 
 		verbose_name = "assinatura"
 		verbose_name_plural = "assinaturas"
-		order_with_respect_to = "inicio"
-
+		order_with_respect_to = "cliente"
+	
 	def __str__(self):
 		return "Assinatura: " + str(self.id) + " | ( Cliente: " + self.cliente.id +" )"
 
