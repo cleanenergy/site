@@ -91,6 +91,9 @@ class Cliente(models.Model):
 		help_text = "CEP(XXXXX-XXX)",
 		verbose_name = "CEP da geração",
 		)
+	# Dados de informação de contato do cliente
+
+	#telefone: 
 	class Meta:
 		verbose_name = "cliente"
 		verbose_name_plural = "clientes"

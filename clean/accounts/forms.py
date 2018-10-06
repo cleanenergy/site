@@ -3,6 +3,7 @@
 from django import forms
 from .models import User
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
+from django.contrib.auth.forms import ReadOnlyPasswordHashField
 
 class UserCreationForm(forms.ModelForm):
 	password1 = forms.CharField(
@@ -36,13 +37,14 @@ class UserCreationForm(forms.ModelForm):
 
 class UserChangeForm(forms.ModelForm):
 # Formulário para alteração de Usuário
+	password = ReadOnlyPasswordHashField()
+	username = forms.CharField(
+			label = "Login",
+			disabled = True,
+			)
 
 	class Meta:
 		model = User
-		username = forms.CharField(
-			label = "login",
-			disabled = True,
-			)
 		fields = (
 			"nome",
 			"sobrenome",
@@ -50,8 +52,12 @@ class UserChangeForm(forms.ModelForm):
 			"email",
 			"is_staff",
 			"is_superuser",
-			"password"
 			)
+	def clean_password(self):
+		# Regardless of what the user provides, return the initial value.
+		# This is done here, rather than on the field, because the
+		# field does not have access to the initial value
+		return self.initial["password"]
 
 class UserChangeFormCliente(forms.ModelForm):
 # Formulário para alteração de Usuário
@@ -91,7 +97,7 @@ class UserAdmin(BaseUserAdmin):
 	list_display = ('nome','sobrenome','email', 'is_staff')
 	list_filter = ('is_staff',)
 	fieldsets = (
-		("Login", {'fields': ('username', 'email')}),
+		("Login", {'fields': ('username', 'email', 'password')}),
 		('Informações Pessoais', {'fields': ("nome","sobrenome")}),
 		('Permissões', {'fields': ('is_staff','is_superuser')}),
 	)
@@ -100,12 +106,10 @@ class UserAdmin(BaseUserAdmin):
 	add_fieldsets = (
     	(None, {
     		'classes': ('wide',),
-    		'fields': ('username', 'password1', 'password2')}
+    		'fields': ('nome', 'sobrenome', 'email', 'username', 'password1', 'password2')}
     	),
 	)
 	search_fields = ('nome','sobrenome',)
 	ordering = ('nome','sobrenome',)
 	filter_horizontal = ()
 
-#class LoginForm(form.ModelForm):
-#	login = 

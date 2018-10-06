@@ -11,9 +11,9 @@
 			</div>
 			<div class="col-12 d-flex justify-content-center pl-5 pr-5">
 				{% if next %}
-				<form action="?next={{next}}" method="post" style="width:100%">
+				<form action="?next={{next}}" id="loginForm" method="post" style="width:100%">
 				{% else %}
-				<form action="" method="post" style="width:100%">
+				<form action="" method="post" id="loginForm" style="width:100%">
 				{% endif %}
 				{% csrf_token %}
 				{% if form.non_field_errors %}
@@ -42,19 +42,51 @@
         					{% endfor %}
       					</div>
       					{% endif %}
-		    			<small id="{{field.name}}Help" class="form-text text-muted">{{field.help_text}}</small>
+		    			<small id="{{field.name}}Help" class="form-text text-muted text-right">{{field.help_text}}</small>
+		    			{% if field.html_name == 'password' %}
+		    			<small id="esqueceuSenha" class="form-text text-muted text-right"><a href="{% url 'accounts_password_reset_confirm' %}">Esqueceu sua senha?</a></small>
+		    			{% endif %}
+		    			
 		  			</div>
 		  		{% endfor %}
 					<div class="row justify-content-center">
-						<input type="submit" class="btn btn-primary" value="Entrar" />
+						<button class="btn btn-primary" id="enter">Entrar</button>
 					</div>
 				</form>
+			</div>
+			<div class="col-12 mt-5">
+				<small id="colaborador" class="form-text text-muted text-center"><a href="{% url 'admin_login' %}">Acessar área de colaborador?</a></small>
 			</div>
 		</div>
 	</div>
 	
 
 </div>
+<script>
+	$(document).ready(function(){
+
+		$('#id_username').attr('placeholder', "Digite seu CPF ou CNPJ");
+		$('#usernameHelp').html('Somente números')
+		$('#id_password').attr('placeholder', "Digite sua senha");
+		var options =  {
+  			onKeyPress: function(username, e, field, options) {
+    			var masks = ['000.000.000-00Z', '00.000.000/0000-00'];
+    			var mask = (username.length<15) ? masks[0] : masks[1];
+    			$('#id_username').mask(mask, options);
+			},
+			translation: {
+				Z:{pattern: /[a-zA-Z0-9]/, optional: true},
+			},
+		};
+		
+    	$('#id_username').mask('000.000.000-00Z', options);
+    	$('#enter').on('click', function(){
+    		$('#id_username').val($('#id_username').cleanVal());
+    		$('#loginForm').submit()
+    	})
+	
+	});
+</script>
 
 
 {% endblock %}
