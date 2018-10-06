@@ -47,7 +47,7 @@
       					{% endif %}
 		    			<small id="{{field.name}}Help" class="form-text text-muted text-right">{{field.help_text}}</small>
 		    			{% if field.html_name == 'password' %}
-		    			<small id="esqueceuSenha" class="form-text text-muted text-right"><a href="{% url 'accounts_password_reset_confirm' %}">Esqueceu sua senha?</a></small>
+		    			<small id="esqueceuSenha" class="form-text text-muted text-right"><a href="{% url 'accounts_password_reset_confirm_admin' %}">Esqueceu sua senha?</a></small>
 		    			{% endif %}
 		    			
 		  			</div>

@@ -41,6 +41,36 @@ def password_reset_confirm(request):
 			"message": '<strong>Vamos lá!</strong> Informe seu login e iremos enviar um link para recuperação de senha. Se você é nosso cliente, seu login será seu CPF ou CNPJ.',
 			})
 
+def password_reset_confirm_admin(request):
+	if request.method == "POST":
+		username = request.POST.get("username", None)
+		if username:
+			try:
+				user = User.objects.get(username = username)
+			except:
+				return render(request, "accounts/reset_password_confirm_admin.html", {
+					"type": 'danger',
+					"message": '<strong>Temos um problema!</strong> Este login não está cadastrado em nosso sistema, você está certo deste que este é seu login? Lembre-se que se você é nosso cliente, seu login será seu CPF ou CNPJ.',
+					})
+			# Cria um código de verificação para ser enviado por e-mail
+			code = gen_code(user)
+
+			# Cria um token para validar a mudança que incorpora o código gerado
+			token = gen_token(user, code)
+
+			# Obtêm o URL de reset do password
+			recovery_link = get_recovery_link(request, token)
+
+			email_hidden = send_recovery_mail(user, recovery_link, code)
+
+			return render(request, "accounts/reset_password_send.html",{
+				"email": email_hidden
+				})
+	if request.method == "GET":
+		return render(request, "accounts/reset_password_confirm_admin.html", {
+			"type": 'info',
+			"message": '<strong>Vamos lá!</strong> Informe seu login e iremos enviar um link para recuperação de senha. Se você é nosso cliente, seu login será seu CPF ou CNPJ.',
+			})
 
 def password_reset(request, token):
 	if request.method == "POST":
