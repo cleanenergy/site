@@ -63,10 +63,10 @@
 						{% for assinatura in assinaturas %}
 						{% for mensalidade in assinatura.mensalidades.all %}
 							{% if not mensalidade.pago %}
-							<a class="btn btn-secondary" data-toggle="collapse" href="#mensalidade{{mensalidade.id}}" role="button" aria-expanded="false" aria-controls="mensalidade{{mensalidade.id}}">
+							<a class="btn btn-secondary" data-toggle="collapse" href="#mensalidadeHome{{mensalidade.id}}" role="button" aria-expanded="false" aria-controls="mensalidadeHome{{mensalidade.id}}">
 								Mensalidade {{mensalidade.nParcela}} de {{mensalidade.assinatura.prazo}}
 	  						</a>
-							<div class="collapse" id="mensalidade{{mensalidade.id}}">
+							<div class="collapse" id="mensalidadeHome{{mensalidade.id}}">
 								<div class="card card-body text-left">
 									<p><b>Assinatura de referência: </b> ASS {{mensalidade.assinatura.id}}</p>
 									<p><b>Valor: </b> R$ {{mensalidade.valor}}</p>
