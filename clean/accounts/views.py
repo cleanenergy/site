@@ -95,7 +95,7 @@ def gen_token(user, code):
 	return token
 
 def get_recovery_link(request, token):
-	recovery_link = "http://" + request.get_host() + reverse('accounts_password_reset', args=(token,))
+	recovery_link = "https://" + request.get_host() + reverse('accounts_password_reset', args=(token,))
 	return recovery_link
 
 def is_valid_token(user, code, token):
