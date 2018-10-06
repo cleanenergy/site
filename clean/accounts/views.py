@@ -28,7 +28,7 @@ def password_reset_confirm(request):
 			token = gen_token(user, code)
 
 			# Obtêm o URL de reset do password
-			recovery_link = get_recovery_link(request, token)
+			recovery_link = get_recovery_link(request, user, token)
 
 			email_hidden = send_recovery_mail(user, recovery_link, code)
 
@@ -59,7 +59,7 @@ def password_reset_confirm_admin(request):
 			token = gen_token(user, code)
 
 			# Obtêm o URL de reset do password
-			recovery_link = get_recovery_link(request, token)
+			recovery_link = get_recovery_link(request, user, token)
 
 			email_hidden = send_recovery_mail(user, recovery_link, code)
 
@@ -72,9 +72,8 @@ def password_reset_confirm_admin(request):
 			"message": '<strong>Vamos lá!</strong> Informe seu login e iremos enviar um link para recuperação de senha. Se você é nosso cliente, seu login será seu CPF ou CNPJ.',
 			})
 
-def password_reset(request, token):
+def password_reset(request, username, token):
 	if request.method == "POST":
-		username = request.POST.get("username", None)
 		code = request.POST.get("code", None)
 		password1 = request.POST.get("password1", None)
 		password2 = request.POST.get("password2", "0")
@@ -124,8 +123,8 @@ def gen_token(user, code):
 	token = token.hexdigest()
 	return token
 
-def get_recovery_link(request, token):
-	recovery_link = "https://" + request.get_host() + reverse('accounts_password_reset', args=(token,))
+def get_recovery_link(request, user, token):
+	recovery_link = "https://" + request.get_host() + reverse('accounts_password_reset', args=(user.username,token,))
 	return recovery_link
 
 def is_valid_token(user, code, token):

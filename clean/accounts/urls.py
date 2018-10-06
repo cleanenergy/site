@@ -19,5 +19,5 @@ from accounts import views
 urlpatterns = [
 	url(r'^reset/confirm/$', views.password_reset_confirm, name="accounts_password_reset_confirm"),
 	url(r'^reset/confirm/admin$', views.password_reset_confirm_admin, name="accounts_password_reset_confirm_admin"),
-    url(r'^reset/(?P<token>[\w-]+)', views.password_reset, name="accounts_password_reset"),
+    url(r'^reset/(?P<username>[\w-]+)/(?P<token>[\w-]+)', views.password_reset, name="accounts_password_reset"),
 ]
