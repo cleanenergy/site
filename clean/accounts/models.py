@@ -32,8 +32,6 @@ class User(AbstractBaseUser, PermissionsMixin):
 		)
 	email = models.EmailField(
 		max_length=200,
-		null=True,
-		blank=True,
 		help_text="endereço de e-mail do usuário",
 		verbose_name="email",
 		)
@@ -44,6 +42,12 @@ class User(AbstractBaseUser, PermissionsMixin):
 	is_staff = models.BooleanField(
 		verbose_name="staff",
 		default = False,
+		)
+	date_exp = models.DateField(
+		blank=True,
+		null=True,
+		help_text = "expiração reset password",
+		verbose_name = "data de expiração",
 		)
 
 	objects = UserManager()

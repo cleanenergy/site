@@ -6,14 +6,17 @@
 <div class="row" style="background-image: url('{% static 'clean/img/solarpanel.jpg' %}'); background-repeat: no-repeat; background-size: 100vw 100vh; width: 100vw; height: 100vh">
 	<div class="col-md-4 d-flex shadow-lg bg-light" style="opacity:0.95;">
 		<div class="row align-self-center justify-content-center">
+			<div class="col-12 text-center">
+				<h2>Administração</h2>
+			</div>
 			<div class="col-8">
 				<img src="{% static 'clean/img/logo.png' %}" class="img-fluid" alt="Logo Clean">
 			</div>
 			<div class="col-12 d-flex justify-content-center pl-5 pr-5">
 				{% if next %}
-				<form action="?next={{next}}" method="post" style="width:100%">
+				<form action="?next={{next}}" id="loginForm" method="post" style="width:100%">
 				{% else %}
-				<form action="" method="post" style="width:100%">
+				<form action="" method="post" id="loginForm" style="width:100%">
 				{% endif %}
 				{% csrf_token %}
 				{% if form.non_field_errors %}
@@ -33,9 +36,8 @@
 				{% endif %}
 				{% for field in form.visible_fields %}
 					<div class="form-group">
-		    			<label for="{{field.id_for_label}}">{{field.label_tag}}</label>
-		    			<input type="{{field.html_name}}" name="{{field.name}}" class="form-control {% if field.errors %}is-invalid{% endif %}" id="{{field.id_for_label}}" aria-describedby="{{field.name}}Help" placeholder="{{field.help_text}}" value="{% if field.html_name != 'password' %}{{ field.value }} {% endif %}">
-		    			<small id="{{field.name}}Help" class="form-text text-muted">{{field.help_text}}</small>
+		    			<label for="{{field.id_for_label}}">{{field.label}}</label>
+		    			<input type="{{field.html_name}}" name="{{field.name}}" class="form-control {% if field.errors %}is-invalid{% endif %}" id="{{field.id_for_label}}" aria-describedby="{{field.name}}Help" placeholder="{{field.label}}" value="{% if field.value %}{% if field.html_name != 'password' %}{{field.value}}{% endif %}{% endif %}">
 		    			{% if field.errors %}
 		    			<div class="invalid-feedback">
         					{% for error in field.errors %}
@@ -43,18 +45,34 @@
         					{% endfor %}
       					</div>
       					{% endif %}
+		    			<small id="{{field.name}}Help" class="form-text text-muted text-right">{{field.help_text}}</small>
+		    			{% if field.html_name == 'password' %}
+		    			<small id="esqueceuSenha" class="form-text text-muted text-right"><a href="{% url 'accounts_password_reset_confirm' %}">Esqueceu sua senha?</a></small>
+		    			{% endif %}
+		    			
 		  			</div>
 		  		{% endfor %}
 					<div class="row justify-content-center">
-						<input type="submit" class="btn btn-primary" value="Entrar" />
+						<button class="btn btn-primary" id="enter">Entrar</button>
 					</div>
 				</form>
+			</div>
+			<div class="col-12 mt-5">
+				<small id="cliente" class="form-text text-muted text-center"><a href="{% url 'login' %}">Acessar área do cliente?</a></small>
 			</div>
 		</div>
 	</div>
 	
 
 </div>
+<script>
+	$(document).ready(function(){
+
+		$('#id_username').attr('placeholder', "@clean.eco.br");
+		$('#id_password').attr('placeholder', "Digite sua senha");
+	});
+	
+</script>
 
 
 {% endblock %}

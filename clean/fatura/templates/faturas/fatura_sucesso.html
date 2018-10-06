@@ -10,26 +10,26 @@
 
 {% block navbar %}
 <nav class="navbar navbar-dark top-fixed bg-azul-clean navbar-expand-lg">
-	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-    	<span class="navbar-toggler-icon"></span>
-  	</button>
-  	<span class="navbar-brand mb-0 h1 text-white">
-    	<img src="{% static 'clean/img/navlogo.png' %}" height="40" alt="Clean Energy Solutions">
-  	</span>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <span class="navbar-brand mb-0 h1 text-white">
+      <img src="{% static 'clean/img/navlogo.png' %}" height="40" alt="Clean Energy Solutions">
+    </span>
 
   
 {% block navs %}
   
 {% endblock %}
-	<div class="ml-auto">
-  		<a class="navbar-text text-warning">
-      		<span class="d-lg-none"><i class="fas fa-user-circle fa-lg"></i> {{user.nome}}</span>
-      		<span class="d-none d-lg-block"><i class="fas fa-user-circle fa-lg"></i> {{user.nome}} {{user.sobrenome}}</span>
-  		</a>
-  		<a href="/logout/" class="navbar-text ml-3 nav-link text-white">
-      		<i class="fas fa-sign-out-alt fa-lg" style="color:Tomato"></i> Sair
-  		</a>
-  	</div>
+  <div class="ml-auto">
+      <a class="navbar-text text-warning">
+          <span class="d-lg-none"><i class="fas fa-user-circle fa-lg"></i> {{user.nome}}</span>
+          <span class="d-none d-lg-block"><i class="fas fa-user-circle fa-lg"></i> {{user.nome}} {{user.sobrenome}}</span>
+      </a>
+      <a href="/logout/" class="navbar-text ml-3 nav-link text-white">
+          <i class="fas fa-sign-out-alt fa-lg" style="color:Tomato"></i> Sair
+      </a>
+    </div>
 </nav>
 
 {% endblock %}
@@ -47,5 +47,5 @@
 {% endblock %}
 
 {% block scripts %}
-		
+    
 {% endblock %}

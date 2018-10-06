@@ -43,5 +43,3 @@ def fatura_pagar(request, assinaturaId = None):
 				})
 	redirect("cliente_financeiro")
 
-	
-

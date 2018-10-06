@@ -27,3 +27,4 @@ class AssinaturaAdminForm(forms.ModelForm):
 		widgets = {
 			"secret_key": forms.TextInput(attrs={'readonly':'readonly', "style": "width:250px; color:red"}),
 		}
+
