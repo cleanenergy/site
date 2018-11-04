@@ -1,7 +1,6 @@
 {% extends "clientes/clientes_base.html" %}
 {% load static %}
 {% load l10n %}
-{% load bootstrap4 %}
 {% block title %}Informações de Geração{% endblock %}
 
 {% block navbar %}
@@ -18,13 +17,7 @@
 	<div class="collapse navbar-collapse" id="navbarNav">
     <ul class="navbar-nav">
       <li class="nav-item">
-        <a class="nav-link inactive" href="{% url 'cliente_geracao' %}">Geração</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="{% url 'cliente_financeiro' %}">Financeiro<span class="sr-only">(current)</span></a>
-      </li>
-      <li class="nav-item active">
-        <a class="nav-link" href="{% url 'cliente_informacoes_pessoais' %}">Informações</a>
+        <a class="nav-link" href="/admin/">Admin Django</a>
       </li>
     </ul>
   </div>
@@ -43,29 +36,30 @@
 
 {% endblock %}
 
-{% block conteudo %}
-<ul class="nav nav-tabs justify-content-center">
-  	<li class="nav-item">
-    	<a class="nav-link {% if page == 'pessoal' %}active{% endif %}" href="{% url 'cliente_informacoes_pessoais' %}">Informações Pessoais</a>
-  	</li>
-  	<li class="nav-item">
-    	<a class="nav-link {% if page == 'user' %}active{% endif %}" href="{% url 'cliente_informacoes_usuario' %}">Informações de Login</a>
-  	</li>
-  	<li class="nav-item">
-    	<a class="nav-link {% if page == 'password' %}active{% endif %}" href="{% url 'cliente_informacoes_password' %}">Modificar senha de acesso</a>
-  	</li>
-</ul>
-<div class="row mt-5 d-flex justify-content-around">
-	<div class="col-md-6">
-		<form method="POST" style="width:100%">
-			{% csrf_token %}
-			{% bootstrap_form form %}
-			<div class="row d-flex justify-content-around">
-				<button type="submit" class="btn btn-primary">Salvar</button>
-			</div>
-		</form>
-	</div>
+{% block conteudo %} 
+<div class="row d-flex justify-content-around">
+	<div class="col-8">
+		<table class="table">
+		  	<thead>
+		    	<tr>
+		      		<th scope="col">Identificador</th>
+		      		<th scope="col">Nome</th>
+		      		<th scope="col">Cidade</th>
+		    	</tr>
+		  	</thead>
+		  	<tbody>
+		  		{% for cliente in clientes %}
+			  	<tr>
+	      			<td><a href="{% url 'controle_cliente_geracao' cliente.user.pk %}">{{cliente.user.pk}}</a></td>
+	      			<td>{{cliente.nome}}</td>
+	      			<td>{{cliente.cidade}}</td>
+	    		</tr>
+    			{% endfor %}
+    		</tbody>
+    	</table>
+    </div>
 </div>
+
 
 {% endblock %}
 

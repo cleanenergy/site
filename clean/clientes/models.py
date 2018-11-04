@@ -30,7 +30,11 @@ class Cliente(models.Model):
 		help_text = "nome do cliente ou razão social",
 		verbose_name = "nome ou razão social"
 		)
-
+	celular = models.CharField(
+		max_length = 20,
+		help_text = "telefone celular do cliente",
+		verbose_name = "telefone celular"
+		)
 
 	# Dados do Endereço de cobrança/contato do cliente. As unidade geradoras do cliente podem
 	# ter um endereço diferente desse.

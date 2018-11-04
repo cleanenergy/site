@@ -13,11 +13,15 @@ from django.contrib.auth import authenticate
 from django.contrib.auth.decorators import login_required
 from django.utils.timezone import datetime
 from fatura.models import Assinatura, Mensalidade
+from django.contrib.auth.decorators import user_passes_test
+from clientes.models import Cliente
 
-@login_required
-def cliente_geracao(request):
+
+
+@user_passes_test(lambda u: u.is_superuser)
+def cliente_geracao(request, pk):
 	try:
-		cliente = Cliente.objects.get(user=request.user)
+		cliente = Cliente.objects.get(user__pk=pk)
 	except ObjectDoesNotExist:
 		cliente = None
 
@@ -41,7 +45,8 @@ def cliente_geracao(request):
 			ug = Geradora.objects.filter(id=idUg)[:1][0]
 			dadosGeracao = getDadosGeracao(ug=ug, cliente=cliente, data=data)
 
-			return render(request, "clientes/clientes_geracao.html", {
+			return render(request, "controle/clientes_geracao.html", {
+				"pk": pk,
 				"date": data.strftime("%d-%m-%Y"),
 				"ug": ug,
 				"ugs": ugs,
@@ -70,7 +75,8 @@ def cliente_geracao(request):
 			ug = ugs.first()
 			dadosGeracao = getDadosGeracao(ug=ug, cliente=cliente, data=data)
 
-			return render(request, "clientes/clientes_geracao.html", {
+			return render(request, "controle/clientes_geracao.html", {
+				"pk": pk,
 				"date": data.strftime("%d-%m-%Y"),
 				"ug": ug,
 				"ugs": ugs,
@@ -98,24 +104,33 @@ def cliente_geracao(request):
 
 	return redirect('/controle/')
 
-@login_required
-def cliente_financeiro(request):
+@user_passes_test(lambda u: u.is_superuser)
+def cliente_financeiro(request,pk):
 	try:
-		cliente = Cliente.objects.get(user=request.user)
+		cliente = Cliente.objects.get(user__pk=pk)
 
 	except ObjectDoesNotExist:
 		cliente = None
 	if cliente:
 		assinaturas = Assinatura.objects.filter(cliente=cliente)
-		return render(request, "clientes/clientes_financeiro.html", {
+		return render(request, "controle/clientes_financeiro.html", {
+			"pk": pk,
 			"assinaturas": assinaturas
 			})
-	return redirect('/controle/')
+	return redirect('/admin/')
 
-@login_required
-def cliente_informacoes_pessoais(request):
+@user_passes_test(lambda u: u.is_superuser)
+def cliente_lista(request):
+
+	clientes = Cliente.objects.all()
+	return render(request, "controle/controle.html", {
+		"clientes": clientes
+		})
+
+@user_passes_test(lambda u: u.is_superuser)
+def cliente_informacoes_pessoais(request, user):
 	try:
-		cliente = Cliente.objects.get(user=request.user)
+		cliente = Cliente.objects.get(user__pk=user)
 	except ObjectDoesNotExist:
 		cliente = None
 
@@ -128,18 +143,18 @@ def cliente_informacoes_pessoais(request):
 		else:
 			form = ClienteEditForm(instance=cliente)
 
-		return render(request, "clientes/clientes_informacoes.html", {
+		return render(request, "controle/clientes_informacoes.html", {
 			"page": "pessoal",
 			"form": form,
 			"cliente": cliente,
 			"titulo": "Informações Pessoais",
 			})
-	return redirect('/controle/')
+	return redirect('/admin/')
 
-@login_required
-def cliente_informacoes_usuario(request):
+@user_passes_test(lambda u: u.is_superuser)
+def cliente_informacoes_usuario(request, user):
 	try:
-		cliente = Cliente.objects.get(user=request.user)
+		cliente = Cliente.objects.get(user__pk=user)
 	except ObjectDoesNotExist:
 		cliente = None
 
@@ -152,38 +167,13 @@ def cliente_informacoes_usuario(request):
 		else:
 			form = UserChangeFormCliente(instance=cliente.user)
 
-		return render(request, "clientes/clientes_informacoes.html", {
+		return render(request, "controle/clientes_informacoes.html", {
 			"page": "user",
 			"form": form,
 			"cliente": cliente,
 			"titulo": "Dados de Usuário",
 			})
-	return redirect('/controle/')
-
-@login_required
-def cliente_informacoes_password(request):
-	try:
-		cliente = Cliente.objects.get(user=request.user)
-	except ObjectDoesNotExist:
-		cliente = None
-	if cliente:
-		if request.method == "POST":
-			form = PasswordChangeForm(cliente.user, request.POST)
-			if form.is_valid():
-				form.save()
-				update_session_auth_hash(request, cliente.user)
-				authenticate(usernanem=cliente.user.username ,password=request.POST["new_password1"])
-				return redirect("/clientes/informacoes/")
-		else:
-			form = PasswordChangeForm(cliente.user)
-
-		return render(request, "clientes/clientes_informacoes.html", {
-			"page": "password",
-			"form": form,
-			"cliente": cliente,
-			"titulo": "Mudar Senha",
-			})
-	return redirect('/controle/')
+	return redirect('/admin/')
 
 
 def getDadosGeracao(ug, cliente, data):
@@ -390,13 +380,6 @@ def getEnergia(cliente):
 		"energiaMes": energiaMes/1000,					# [ kWh ]
 		"energiaAno": energiaAno/1000					# [ kWh ]
 		}
-
-
-
-
-
-
-
 
 
 
