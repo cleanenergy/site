@@ -240,7 +240,10 @@ def getDadosDia(ug, data):
 
 def getDadosMes(ug, data):
 	dataInicio = datetime(data.year, data.month, 1)
-	dataFim = datetime(data.year, data.month + 1, 1) - timedelta(seconds=1)
+	if data.month + 1 > 12:
+		dataFim = datetime(data.year, 1, 1) - timedelta(seconds=1)
+	else:
+		dataFim = datetime(data.year, data.month + 1, 1) - timedelta(seconds=1)
 
 	medidas = Medida.objects.filter(ug=ug, data_hora__gte=dataInicio, data_hora__lte=dataFim).order_by("data_hora")
 
@@ -347,7 +350,12 @@ def getEnergia(cliente):
 			energiaDia = energiaDia + 0
 
 		# Dados do Mês
-		fimMes = datetime(data.year, data.month + 1, 1) - timedelta(seconds=1)
+		if data.month + 1 > 12:
+			fimMes = datetime(data.year,1, 1) - timedelta(seconds=1)
+		else:
+			fimMes = datetime(data.year, data.month + 1, 1) - timedelta(seconds=1)
+
+		
 		inicioMes = datetime(data.year, data.month, 1)
 
 		medidasMes = Medida.objects.filter(ug=ug, data_hora__gte=inicioMes, data_hora__lte=fimMes).order_by("data_hora")
