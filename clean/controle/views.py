@@ -241,7 +241,7 @@ def getDadosDia(ug, data):
 def getDadosMes(ug, data):
 	dataInicio = datetime(data.year, data.month, 1)
 	if data.month + 1 > 12:
-		dataFim = datetime(data.year, 1, 1) - timedelta(seconds=1)
+		dataFim = datetime(data.year + 1, 1, 1) - timedelta(seconds=1)
 	else:
 		dataFim = datetime(data.year, data.month + 1, 1) - timedelta(seconds=1)
 
@@ -351,7 +351,7 @@ def getEnergia(cliente):
 
 		# Dados do Mês
 		if data.month + 1 > 12:
-			fimMes = datetime(data.year,1, 1) - timedelta(seconds=1)
+			fimMes = datetime(data.year + 1,1, 1) - timedelta(seconds=1)
 		else:
 			fimMes = datetime(data.year, data.month + 1, 1) - timedelta(seconds=1)
 
